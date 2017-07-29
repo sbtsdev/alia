@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'description', 'password',
     ];
 
     /**
@@ -40,4 +40,5 @@ class User extends Authenticatable
     public function stays()
     {
         return $this->hasMany('App\Models\Stay');
-    }}
+    }
+}

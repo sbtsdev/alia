@@ -81,7 +81,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        return view('pages.user-edit', $user);
+        $user->name = $request->name;
+        $user->description = $request->description;
+        $user->email = $request->email;
+        $user->save();
+        return back()->withUser($user);
     }
 
     /**

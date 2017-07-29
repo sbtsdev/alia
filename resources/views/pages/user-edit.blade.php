@@ -20,7 +20,7 @@
                         <label for="description">Description</label>
                         <input type="text" class="form-control" name="description" value="{{ $description }}" />
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" name="description" value="{{ $email }}" />
+                        <input type="email" class="form-control" name="email" value="{{ $email }}" />
                     </div>
                     <button class="btn btn-primary" type="submit">Update</button>
                     <hr>
