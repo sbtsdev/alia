@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+         $this->call(UsersTableSeeder::class);
+        // composer require fzaninotto/faker
+        //      factory(App\User::class, 50)->create()->each(function ($u) {
+        //      $u->users()->save(factory(App\User::class)->make());
+        //  });
     }
 }
