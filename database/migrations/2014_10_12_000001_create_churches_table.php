@@ -18,7 +18,7 @@ class CreateChurchesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
-            $table->string('phone',13); //13 for country code
+            $table->string('phone',16); //13 for country code
             $table->string('email')->unique();
             $table->timestamps();
         });

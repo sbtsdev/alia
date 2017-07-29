@@ -24,13 +24,13 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Models\Churches::class, function (Faker\Generator $faker) {
-   $user_ids = \DB::table('users')->select('id')->get();
+$factory->define(App\Models\Church::class, function (Faker\Generator $faker) {
+   $user_ids = \DB::table('users')->select('id')->get()->toArray();
    $user_id = $faker->randomElement($user_ids)->id;
 
     return [
         'user_id' => $user_id,
-        'phone' => $faker->cellNumber,
+        'phone' => $faker->e164PhoneNumber,
         'name' => $faker->company,
         'email' => $faker->unique()->safeEmail
     ];
