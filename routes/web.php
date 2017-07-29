@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 Route::resource('users', 'UserController');
 Route::resource('listings', 'ListingController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

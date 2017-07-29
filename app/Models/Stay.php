@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Listing extends Model
+class Stay extends Model
 {
-    public function user()
+    public function stayer()
     {
         return $this->belongsTo('App\Models\User');
     }
 
-    public function stays()
+    public function listing()
     {
-         return $this->hasMany('App\Models\Stay');
+        return $this->belongsTo('App\Models\Listing');
     }
 }

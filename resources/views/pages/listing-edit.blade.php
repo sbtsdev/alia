@@ -1,5 +1,11 @@
 @extends('layout')
 
 @section('content')
-    Listing edit
+
+<div>
+
+
+
+</div>
+
 @endsection

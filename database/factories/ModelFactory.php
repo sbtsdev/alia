@@ -59,3 +59,33 @@ $factory->define(App\Models\Listing::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Models\Stay::class, function (Faker\Generator $faker) {
+    $listing_ids = \DB::table('listings')->select('id')->get()->toArray();
+    $listing_id = $faker->randomElement($listing_ids)->id;
+    $listing = \App\Models\Listing::find($listing_id);
+    $listing_max_day = $listing->max_stay_days;
+    $stayer_ids = \DB::table('users')->select('id')->get()->toArray();
+    $stayer_id = $faker->randomElement($stayer_ids)->id;
+    $rand_days = rand(1,180);
+
+    $pos_neg = rand(0,1) ? 'sub': 'add';
+
+    $date = new DateTime(date('Y-m-d'));
+    $date->$pos_neg(new DateInterval('P' . $rand_days . 'D'));
+    $start_date = $date->format('Y-m-d');
+
+    $stay_days = rand(1,$listing_max_day);
+
+    $endDateObj = \DateTime::createFromFormat('Y-m-d', $start_date);
+    $endDateObj->add(new DateInterval('P' . $stay_days . 'D'));
+    $end_date = $endDateObj->format('Y-m-d');
+
+    return [
+        'stayer_id' => $stayer_id,
+        'listing_id' => $listing_id,
+        'start_date' => $start_date,
+        'end_date' => $end_date,
+    ];
+});
+
+
