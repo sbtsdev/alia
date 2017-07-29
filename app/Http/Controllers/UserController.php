@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Auth;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'create']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -75,6 +82,18 @@ class UserController extends Controller
     {
         $user = User::find($id);
         return view('pages.user-edit', $user);
+    }
+
+    /**
+     * Show the user edit page for the authenticated user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function account()
+    {
+        return view('pages.user-edit', User::find(Auth::id()));
     }
 
     /**

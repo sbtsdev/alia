@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +21,14 @@ Route::resource('listings', 'ListingController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/account', 'UserController@account');
+
+/*
+Route::get('/account', function() {
+  $user = User::find(Auth::id());
+
+  //dd($user);
+
+  return view('pages.user-edit', User::find(Auth::id()));
+})->middleware('auth');
+*/

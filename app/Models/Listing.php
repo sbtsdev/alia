@@ -15,4 +15,9 @@ class Listing extends Model
     {
          return $this->hasMany('App\Models\Stay');
     }
+
+    public function availabilities()
+    {
+         return $this->hasMany('App\Models\Availability');
+    }
 }

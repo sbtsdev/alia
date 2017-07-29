@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Alia | Places to stay for missionaries</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,600">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/app.css">
@@ -17,18 +17,34 @@
             <a href="/"><img class="logo" src="/assets/img/alia.png" alt="Alia"></a>
             <nav class="pull-right">
                 <a href="/"><i class="fa fa-home"></i> Home</a>
-                <a href="/"><i class="fa fa-hotel"></i> Listings</a>
-                <a href="/"><i class="fa fa-user-circle-o"></i> Account</a>
+                @if (Auth::check())
+                    <a href="/account"><i class="fa fa-user-circle-o"></i> Account</a>
+                @else
+                    <a href="/login"><i class="fa fa-sign-in"></i> Login</a>
+                    <a href="/register"><i class="fa fa-user-plus"></i> Register</a>
+                @endif
             </nav>
         </div>
     </header>
+    <div class="content" id="app">
 
-    <div class="content">
-    @yield('content')
+        @yield('content')
+
     </div>
-
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    &copy; {{ Date('Y') }} SBTS Labs
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
+
+    @stack('scripts')
+
 </body>
 </html>

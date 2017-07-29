@@ -11,13 +11,39 @@
 }
 
 .btn-coral:hover {
-    background:#ff9079;
+    background:#ff9898;
     color:#fff;
 }
 
+.btn-primary {
+    background:#63b1bf;
+    border-color:#63b1bf;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus {
+    background:#79bcc8;
+    border-color:#79bcc8;
+}
+
+.input-group-btn .btn-lg {
+    font-size:14px;
+    line-height:24px;
+}
+
+.input-number {
+    text-align:center;
+}
+
+/*
+ * General styles
+ */
 body {
     background:#fafafa;
-    font-family:"Raleway", sans-serif;
+    color:#5a5a5a;
+    font-family:"Montserrat", sans-serif;
     font-weight:300;
 }
 
@@ -27,17 +53,20 @@ header {
 }
 
 .logo {
-    padding:12px 0;
-    width:120px;
+    padding:18px 0;
+    height:80px;
 }
 
 nav a {
     border-bottom:3px solid #fff;
     color:#4aa4b5;
     display:inline-block;
-    font-size:17px;
-    font-weight:400;
-    padding:26px 26px 23px;
+    font-size:15px;
+    font-weight:300;
+    line-height:20px;
+    margin:0 20px;
+    padding:30px 8px 27px;
+    text-transform:uppercase;
 }
 
 nav a:hover {
@@ -65,13 +94,13 @@ nav a i {
     width:100%;
 }
 
-.filter .col-lg-4 {
+.filter .col-lg-6:first-child {
     border-right:1px solid rgba(0,0,0,0.1);
-    border-left:1px solid rgba(255,255,255,0.5);
 }
 
-.filter .col-lg-4:first-child {
-    border-left:none;
+.filter .col-lg-3 {
+    border-right:1px solid rgba(0,0,0,0.1);
+    border-left:1px solid rgba(255,255,255,0.5);
 }
 
 .filter .col-lg-2 {
@@ -85,6 +114,31 @@ nav a i {
 
 .filter label {
     color:#5a5a5a;
-    font-weight:600;
+    font-weight:400;
     text-transform:uppercase;
+}
+
+.home-description {
+    margin-top:40px;
+}
+
+.home-description i {
+    font-size:2em;
+    border:3px solid #ff7979;
+    border-radius:50%;
+    color:#ff7979;
+    width:80px;
+    height:80px;
+    margin-top:20px;
+    padding-top:24px;
+}
+
+.home-description h3 {
+    color:#ff7979;
+}
+
+footer {
+    background:#e8e8e8;
+    margin-top:80px;
+    padding:20px;
 }
