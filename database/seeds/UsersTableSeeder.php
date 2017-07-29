@@ -13,12 +13,13 @@ class UsersTableSeeder extends Seeder
     {
         factory(App\Models\User::class, 10)->create()->each(function ($u) {
             //$u->users()->save(factory(App\User::class)->make());
-            $u->churches()->save(factory(App\Models\Church::class)->make());
+//            $u->churches()->save(factory(App\Models\Church::class)->make());
+//            $u->listings()->save(factory(App\Models\Listing::class)->make());
         });
 
-//        factory(App\Models\Church::class, 10)->create()->each(function ($u) {
+        factory(App\Models\Church::class, 10)->create()->each(function ($u) {
             //$u->users()->save(factory(App\User::class)->make());
 //            $u->churches()->save(factory(App\Models\User::class)->make());
- //       });
+       });
    }
 }
