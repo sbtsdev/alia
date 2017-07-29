@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pages.user-list');
+        $users = User::paginate(10);
+        return view('pages.user-list', ['users' => $users]);
     }
 
     /**
@@ -23,7 +25,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.user-edit');
+        $user = new User();
+        return view('pages.user-edit', $user);
     }
 
     /**
@@ -56,7 +59,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.user-edit');
+        $user = User::find($id);
+        return view('pages.user-edit', $user);
     }
 
     /**
