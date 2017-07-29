@@ -11,6 +11,9 @@
             <div class="col-md-9">
                 <form class="form" method="POST" action="/users/{{ $id }}">
                     {{ csrf_field() }}
+                    @if(isset($id))
+                    <input name="_method" type="hidden" value="PUT">
+                    @endif
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" name="name" value="{{ $name }}" />
