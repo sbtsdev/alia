@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Listing;
 
 class ListingController extends Controller
 {
@@ -13,8 +14,7 @@ class ListingController extends Controller
      */
     public function index()
     {
-        $listings = Listing::paginate(15);
-        return view('pages.listing-list', ['listings' => $listings]);
+        return view('pages.listing-list', [ 'listings' => Listing::all() ]);
     }
 
     /**

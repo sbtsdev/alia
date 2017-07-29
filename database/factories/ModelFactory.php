@@ -25,13 +25,37 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Models\Church::class, function (Faker\Generator $faker) {
-   $user_ids = \DB::table('users')->select('id')->get()->toArray();
-   $user_id = $faker->randomElement($user_ids)->id;
+    $user_ids = \DB::table('users')->select('id')->get()->toArray();
+    $user_id = $faker->randomElement($user_ids)->id;
 
     return [
         'user_id' => $user_id,
         'phone' => $faker->e164PhoneNumber,
-        'name' => $faker->company,
+        'name' => $faker->company . " Church",
         'email' => $faker->unique()->safeEmail
     ];
 });
+
+
+$factory->define(App\Models\Listing::class, function (Faker\Generator $faker) {
+    $user_ids = \DB::table('users')->select('id')->get()->toArray();
+    $user_id = $faker->randomElement($user_ids)->id;
+    $types = ['full_apartment', 'full_house', 'single_room', 'attached_apartment', 'bed'];
+
+    return [
+        'user_id' => $user_id,
+        'name' => $faker->company . " House/Apartment",
+        'description' => "listing description " . $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'type' =>  $types[array_rand($types)],
+        'street1' => $faker->streetAddress,
+        'street2' => "Apt. " . $faker->buildingNumber,
+        'city' => $faker->city,
+        'state' => $faker->state,
+        'zip' => $faker->postcode,
+        'kid_friendly' => $faker->boolean(50),
+        'pet_friendly' => $faker->boolean(50),
+        'max_stay_days' => rand(1,365),
+        'beds' => rand(1,10)
+    ];
+});
+
