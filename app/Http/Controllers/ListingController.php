@@ -46,7 +46,8 @@ class ListingController extends Controller
      */
     public function show($id)
     {
-        return view('pages.listing');
+        $listing = Listing::find($id);
+        return view('pages.listing', $listing);
     }
 
     /**
@@ -57,9 +58,8 @@ class ListingController extends Controller
      */
     public function edit($id)
     {
-        $listing = Listing:find($id);
-
-        return view('pages.listing-edit', [ $listing ]);
+        $listing = Listing::find($id);
+        return view('pages.listing-edit', $listing);
     }
 
     /**
