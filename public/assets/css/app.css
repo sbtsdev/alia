@@ -28,3 +28,23 @@ nav a:hover {
     color:#4aa4b5;
     text-decoration:none;
 }
+
+.hero {
+    background:url('/assets/img/justin-schuler-253611.jpg') 0 -50px;
+    background-size:cover;
+    height:600px;
+}
+
+.search {
+    margin-top:240px;
+}
+
+.btn-coral {
+    background:#ff7979;
+    color:#fff;
+}
+
+.btn-coral:hover {
+    background:#ff9079;
+    color:#fff;
+}
