@@ -12,7 +12,7 @@
                 <form class="form" method="POST" action="/users/{{ $id }}">
                     {{ csrf_field() }}
                     @if(isset($id))
-                        <input name="_method" type="hidden" value="PUT">
+                        <input name="_method" type="hidden" value="PUT" />
                     @endif
                     <div class="form-group">
                         <label for="name">Name</label>

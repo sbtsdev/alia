@@ -71,7 +71,8 @@ class ListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $listing = Listing::find($id);
+        return view('pages.listing-edit', $listing);
     }
 
     /**
