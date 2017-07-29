@@ -13,7 +13,8 @@ class ListingController extends Controller
      */
     public function index()
     {
-        return view('pages.listing-list');
+        $listings = Listing::paginate(15);
+        return view('pages.listing-list', ['listings' => $listings]);
     }
 
     /**
