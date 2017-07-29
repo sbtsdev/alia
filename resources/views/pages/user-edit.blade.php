@@ -6,7 +6,7 @@
         <h1>@if(! isset($id)) Create user @else Edit user @endif</h1>
         <div class="row">
             <div class="col-md-3">
-                <a href="#"><img src="https://placeimg.com/200/200/people" width="200" height="200" style="background-color:#bebebe;" /></a>
+                <a href="#"><img src="/assets/img/default-person.png" width="200" height="200" style="background-color:#bebebe;" /></a>
             </div>
             <div class="col-md-9">
                 <form class="form" method="POST" action="/users/{{ $id }}">
