@@ -18,7 +18,7 @@
             <nav class="pull-right">
                 <a href="/"><i class="fa fa-home"></i> Home</a>
                 <a href="/"><i class="fa fa-hotel"></i> Listings</a>
-                <a href="/"><i class="fa fa-user-circle-o"></i> Account</a>
+                <a href="/account"><i class="fa fa-user-circle-o"></i> Account</a>
             </nav>
         </div>
     </header>
