@@ -36,4 +36,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Listing');
     }
-}
+
+    public function stays()
+    {
+        return $this->hasMany('App\Models\Stay');
+    }}
