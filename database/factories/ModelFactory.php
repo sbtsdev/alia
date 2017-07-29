@@ -59,12 +59,19 @@ $factory->define(App\Models\Church::class, function (Faker\Generator $faker) {
     ];
 });
 
+function drand($low, $high)
+{
+return mt_rand($low*1000, $high*1000) / 10000;
+}
 
 $factory->define(App\Models\Listing::class, function (Faker\Generator $faker) {
     $user_ids = \DB::table('users')->select('id')->get()->toArray();
     $user_id = $faker->randomElement($user_ids)->id;
     $types = ['full_apartment', 'full_house', 'single_room', 'attached_apartment', 'bed'];
 
+    $lat = 37.5 + drand(0,10);
+    $long = -84.5 + drand(0,10);
+        //'state' => $faker->state,
     return [
         'user_id' => $user_id,
         'name' => $faker->company . " House/Apartment",
@@ -73,8 +80,10 @@ $factory->define(App\Models\Listing::class, function (Faker\Generator $faker) {
         'street1' => $faker->streetAddress,
         'street2' => "Apt. " . $faker->buildingNumber,
         'city' => $faker->city,
-        'state' => $faker->state,
+        'state' => 'KY',
         'zip' => $faker->postcode,
+        'latitude' => $lat,
+        'longitude' => $long,
         'kid_friendly' => $faker->boolean(50),
         'pet_friendly' => $faker->boolean(50),
         'max_stay_days' => rand(1,365),
@@ -95,9 +104,12 @@ $factory->define(App\Models\Stay::class, function (Faker\Generator $faker) {
     $start_date = $dates['start_date'];
     $end_date = $dates['end_date'];
 
+    $statuses = ['requested', 'accepted', 'denied', 'canceled', 'past', 'missed', 'complete'];
+    $status = $statuses[array_rand($statuses)];
     return [
         'stayer_id' => $stayer_id,
         'listing_id' => $listing_id,
+        'status' => $status,
         'start_date' => $start_date,
         'end_date' => $end_date,
     ];
@@ -145,7 +157,7 @@ $factory->define(App\Models\Message::class, function (Faker\Generator $faker) {
         'from_user_id' => $from_user_id,
         'listing_id' => $listing_id,
         'subject' => $faker->sentence($nbWords = 8, $variableNbWords = true),
-        'text' => $faker->realText($maxNbChars = 100, $indexSize = 2)
+        'text' => $faker->realText($maxNbChars = 500, $indexSize = 2)
     ];
 });
 
