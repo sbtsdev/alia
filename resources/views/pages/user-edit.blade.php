@@ -4,16 +4,26 @@
 <div class="row">
     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1">
         <h1>@if(! isset($id)) Create user @else Edit user @endif</h1>
+        @if(session()->has('message'))
+          @if(session()->get('success') == "yes")
+            <div class="alert alert-success">
+              {{ session()->get('message') }}
+            </div>
+          @else
+            <div class="alert alert-warning">
+              {{ session()->get('message') }}
+            </div>
+          @endif
+        @endif
+
         <div class="row">
             <div class="col-md-3">
                 <a href="#"><img src="/assets/img/default-person.png" width="200" height="200" style="background-color:#bebebe;" /></a>
             </div>
             <div class="col-md-9">
-                <form class="form" method="POST" action="/users/{{ $id }}">
+                <form class="form" method="POST" action="/account">
                     {{ csrf_field() }}
-                    @if(isset($id))
-                        <input name="_method" type="hidden" value="PUT" />
-                    @endif
+
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" name="name" value="{{ $name }}" />

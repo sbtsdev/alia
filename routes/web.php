@@ -16,12 +16,13 @@ use App\Models\User;
 Route::get('/', function () {
     return view('pages.home');
 });
-Route::resource('users', 'UserController');
+//Route::resource('users', 'UserController');
 Route::resource('listings', 'ListingController');
 
 Auth::routes();
 
-Route::get('/account', 'UserController@account');
+Route::get('/account', 'AccountController@edit');
+Route::post('/account', 'AccountController@update');
 
 /*
 Route::get('/account', function() {
