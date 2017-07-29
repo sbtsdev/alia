@@ -11,7 +11,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="city">Find a city</label>
-                                        <input type="text" class="form-control input-lg" id="city" v-model="filter.city">
+                                        <input type="text" class="form-control input-lg" id="city">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
@@ -72,7 +72,7 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.4.15"></script>
     <script>
-        const App = new Vue({
+        const app = new Vue({
             data: {
                 listings: null,
                 filter: {
@@ -114,7 +114,7 @@
             type: 'city'
         })
 
-        placesAutocomplete.on('change', e => App.cityUpdate(e.suggestion));
+        placesAutocomplete.on('change', e => app.cityUpdate(e.suggestion));
 
     </script>
 @endpush
