@@ -9,7 +9,13 @@ Note, [Vagrant](https://www.vagrantup.com/downloads.html) is included, i.e. Vagr
 1. Clone repo
 1. `cd alia`
 1. `composer install` to install [Homestead](https://laravel.com/docs/5.4/homestead) and the rest
-1. `php vendor/bin/homestead make` to create Homestead.yaml
+1. To create Homestead.yaml:
+
+   Mac / Linux:
+   `php vendor/bin/homestead make`
+
+   Windows:
+   `vendor\\bin\\homestead make`
 1. `cp .env.example .env`
 1. Add DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD to .env file
 1. `php artisan key:generate`
