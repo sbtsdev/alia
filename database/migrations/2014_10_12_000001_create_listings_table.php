@@ -25,6 +25,8 @@ class CreateListingsTable extends Migration
             $table->string('city', 100);
             $table->string('state', 50);
             $table->string('zip', '30');
+            $table->double('latitude', '10', '6');
+            $table->double('longitude', '10', '6');
             $table->boolean('kid_friendly');
             $table->boolean('pet_friendly');
             $table->smallInteger('max_stay_days');
