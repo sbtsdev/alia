@@ -57,7 +57,9 @@ class ListingController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.listing-edit');
+        $listing = Listing:find($id);
+
+        return view('pages.listing-edit', [ $listing ]);
     }
 
     /**
