@@ -18,14 +18,17 @@ class CreateListingsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
-            $table->string('type'); //full apartment/house, room, couch
             $table->string('description');
+            $table->string('type'); //full apartment/house, room, couch
+            $table->string('street1', '200');
+            $table->string('street2', 200)->nullable();
+            $table->string('city', 100);
+            $table->string('state', 50);
+            $table->string('zip', '30');
             $table->boolean('kid_friendly');
             $table->boolean('pet_friendly');
-            $table->tinyInteger('max_stay_days');
-            //$table->string('length_of_availability');
-            //dates of stay //new table
-            //$table->string('phone',13); //13 for country code
+            $table->smallInteger('max_stay_days');
+            $table->smallInteger('beds');
             $table->timestamps();
         });
     }
