@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             //$u->users()->save(factory(App\User::class)->make());
             //            $u->churches()->save(factory(App\Models\Church::class)->make());
             //            $u->listings()->save(factory(App\Models\Listing::class)->make());
-            }
+            //}
         //);
 
         /*
