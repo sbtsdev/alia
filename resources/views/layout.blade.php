@@ -21,7 +21,6 @@
                     <a href="/account"><i class="fa fa-user-circle-o"></i> Account</a>
                 @else
                     <a href="/login"><i class="fa fa-sign-in"></i> Login</a>
-                    <a href="/register"><i class="fa fa-user-plus"></i> Register</a>
                 @endif
             </nav>
         </div>
@@ -31,15 +30,6 @@
         @yield('content')
 
     </div>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    &copy; {{ Date('Y') }} SBTS Labs
-                </div>
-            </div>
-        </div>
-    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
