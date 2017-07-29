@@ -9,11 +9,13 @@
                 <a href="#"><img src="/assets/img/default-person.png" width="200" height="200" style="background-color:#bebebe;" /></a>
             </div>
             <div class="col-md-9">
+            @if(isset($id))
                 <form class="form" method="POST" action="/users/{{ $id }}">
+                    <input name="_method" type="hidden" value="PUT" />
+            @else
+                <form class="form" method="POST" action="/users">
+            @endif
                     {{ csrf_field() }}
-                    @if(isset($id))
-                        <input name="_method" type="hidden" value="PUT" />
-                    @endif
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" name="name" value="{{ $name }}" />
