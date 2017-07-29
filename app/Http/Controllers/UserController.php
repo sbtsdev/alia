@@ -73,7 +73,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('pages.user-edit', $user);
     }
 
     /**
