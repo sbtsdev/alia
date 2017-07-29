@@ -55,7 +55,7 @@
             </div>
         </div>
     </section>
-    <section class="listings" v-if="listings">
+    <section class="listings" v-if="listings" v-cloak>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

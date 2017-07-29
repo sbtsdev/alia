@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="icon" href="/assets/img/favicon.png">
 </head>
-<body>
+<body @home class="home" @endhome>
     <header>
         <div class="container">
             <a href="/"><img class="logo" src="/assets/img/alia.png" alt="Alia"></a>

@@ -85,11 +85,14 @@ nav a i {
 
 .content {
     margin-top:-80px;
+    padding-top:80px;
     height:100%;
 }
 
+.home .content { padding-top:0; }
+
 .hero {
-    background:url('/assets/img/hero.jpg') 0 -50px;
+    background:url('/assets/img/hero.jpg') 0 -80px;
     background-size:cover;
     height:100%;
 }
