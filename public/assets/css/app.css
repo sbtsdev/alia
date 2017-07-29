@@ -1,0 +1,30 @@
+body {
+    background:#fafafa;
+    font-family:"Raleway", sans-serif;
+    font-weight:300;
+}
+
+header {
+    background:#fff;
+    border-bottom:1px solid #ddd;
+}
+
+.logo {
+    padding:12px 0;
+    width:120px;
+}
+
+nav a {
+    border-bottom:3px solid #fff;
+    color:#4aa4b5;
+    display:inline-block;
+    font-size:17px;
+    font-weight:400;
+    padding:26px 26px 23px;
+}
+
+nav a:hover {
+    border-bottom:3px solid #4aa4b5;
+    color:#4aa4b5;
+    text-decoration:none;
+}

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
 });
 Route::resource('users', 'UserController');
 Route::resource('listings', 'ListingController');
