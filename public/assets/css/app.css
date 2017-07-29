@@ -1,3 +1,20 @@
+/*
+ * Bootstrap overrides and additions
+ */
+.form-control {
+    border-radius:3px;
+}
+
+.btn-coral {
+    background:#ff7979;
+    color:#fff;
+}
+
+.btn-coral:hover {
+    background:#ff9079;
+    color:#fff;
+}
+
 body {
     background:#fafafa;
     font-family:"Raleway", sans-serif;
@@ -29,22 +46,45 @@ nav a:hover {
     text-decoration:none;
 }
 
+nav a i {
+    color:#ff7979;
+    margin-right:4px;
+}
+
 .hero {
     background:url('/assets/img/justin-schuler-253611.jpg') 0 -50px;
     background-size:cover;
+    position:relative;
     height:600px;
 }
 
-.search {
-    margin-top:240px;
+.filter {
+    background:rgba(255,255,255,0.7);
+    position:absolute;
+    bottom:0;
+    width:100%;
 }
 
-.btn-coral {
-    background:#ff7979;
-    color:#fff;
+.filter .col-lg-4 {
+    border-right:1px solid rgba(0,0,0,0.1);
+    border-left:1px solid rgba(255,255,255,0.5);
 }
 
-.btn-coral:hover {
-    background:#ff9079;
-    color:#fff;
+.filter .col-lg-4:first-child {
+    border-left:none;
+}
+
+.filter .col-lg-2 {
+    border-left:1px solid rgba(255,255,255,0.5);
+}
+
+.filter .form-group {
+    margin:0;
+    padding:60px 0;
+}
+
+.filter label {
+    color:#5a5a5a;
+    font-weight:600;
+    text-transform:uppercase;
 }
