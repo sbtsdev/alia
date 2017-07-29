@@ -15,9 +15,7 @@ class DatabaseSeeder extends Seeder
          $this->call(ChurchesTableSeeder::class);
          $this->call(ListingsTableSeeder::class);
          $this->call(StaysTableSeeder::class);
-        // composer require fzaninotto/faker
-        //      factory(App\User::class, 50)->create()->each(function ($u) {
-        //      $u->users()->save(factory(App\User::class)->make());
-        //  });
+         $this->call(MessagesTableSeeder::class);
+         $this->call(ListingImagesTableSeeder::class);
     }
 }
