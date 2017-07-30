@@ -15,10 +15,17 @@
             </div>
           @endif
         @endif
-
         <div class="row">
             <div class="col-md-3">
-                <a href="#"><img src="/assets/img/default-person.png" width="200" height="200" style="background-color:#bebebe;" /></a>
+                <a href="#"><img src="/assets/img/default-person.png" width="100%" height="100%" style="background-color:#bebebe;" /></a>
+                <div style="margin-top:12px;" class="row account-nav">
+                    <div style="margin-top:12px;" class="col-md-12 text-center">
+                        <a href="/account/listings" style="width:100%;" class="btn btn-primary">Listings</a>
+                    </div>
+                    <div style="margin-top:12px;" class="col-md-12 text-center">
+                        <a href="/account/stays" style="width:100%;" class="btn btn-primary">Stays</a>
+                    </div>
+                </div>
             </div>
             <div class="col-md-9">
                 <form class="form" method="POST" action="/account">
