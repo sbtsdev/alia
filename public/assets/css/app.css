@@ -37,6 +37,10 @@
     text-align:center;
 }
 
+a {
+    color:#4aa4b5;
+}
+
 [v-cloak] { display:none; }
 
 /*
@@ -186,7 +190,12 @@ footer {
     padding:20px;
 }
 
-.ap-dropdown-menu {
+.affix-top .ap-dropdown-menu {
     top:auto !important;
     bottom:100% !important;
+}
+
+.affix .ap-dropdown-menu {
+    top:0% !important;
+    bottom:auto !important;
 }
