@@ -19,6 +19,7 @@ class CreateStaysTable extends Migration
             $table->foreign('listing_id')->references('id')->on('listings');
             $table->integer('stayer_id')->unsigned();
             $table->foreign('stayer_id')->references('id')->on('users');
+            $table->string('status', 20);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->timestamps();

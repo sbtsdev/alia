@@ -11,7 +11,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="city">Find a city</label>
-                                        <input type="text" class="form-control input-lg" id="city" v-model="city">
+                                        <input type="text" class="form-control input-lg" id="city">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
@@ -21,7 +21,7 @@
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-lg btn-primary" @click="decreaseBeds"><i class="fa fa-minus"></i></button>
                                             </span>
-                                            <input type="text" class="form-control input-number input-lg" id="beds" v-model="beds">
+                                            <input type="text" class="form-control input-number input-lg" id="beds" v-model="filter.beds">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-lg btn-primary" @click="increaseBeds"><i class="fa fa-plus"></i></button>
                                             </span>
@@ -35,7 +35,7 @@
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-lg btn-primary" @click="decreaseNights"><i class="fa fa-minus"></i></button>
                                             </span>
-                                            <input type="text" class="form-control input-number input-lg" id="nights" v-model="nights">
+                                            <input type="text" class="form-control input-number input-lg" id="nights" v-model="filter.nights">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-lg btn-primary" @click="increaseNights"><i class="fa fa-plus"></i></button>
                                             </span>
@@ -55,36 +55,12 @@
             </div>
         </div>
     </section>
-    <section class="home-description">
+    <section class="listings" v-if="listings" v-cloak>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <div class="text-center">
-                                <i class="fa fa-calendar"></i>
-                                <h3>Plan</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="text-center">
-                                <i class="fa fa-plane"></i>
-                                <h3>Travel</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="text-center">
-                                <i class="fa fa-bed"></i>
-                                <h3>Stay</h3>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,32 +72,36 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.4.15"></script>
     <script>
-        const App = new Vue({
+        const app = new Vue({
             data: {
-                city: '',
-                state: '',
-                latlng: null,
-                beds: 1,
-                nights: 1
+                listings: null,
+                filter: {
+                    city: '',
+                    state: '',
+                    lat: null,
+                    lng: null,
+                    beds: 1,
+                    nights: 1
+                }
             },
             methods: {
                 cityUpdate: function (suggestion) {
-                    console.log(suggestion)
-                    this.city = suggestion.name
-                    this.state = suggestion.administrative
-                    this.latlng = suggestion.latlng
+                    this.filter.city = suggestion.name
+                    this.filter.state = suggestion.administrative
+                    this.filter.lat = suggestion.latlng.lat
+                    this.filter.lng = suggestion.latlng.lng
                 },
                 decreaseBeds: function () {
-                    return this.beds > 1 ? this.beds-- : this.beds
+                    return this.filter.beds > 1 ? this.filter.beds-- : this.filter.beds
                 },
                 increaseBeds: function () {
-                    return this.beds++
+                    return this.filter.beds++
                 },
                 decreaseNights: function () {
-                    return this.nights > 1 ? this.nights-- : this.nights
+                    return this.filter.nights > 1 ? this.filter.nights-- : this.filter.nights
                 },
                 increaseNights: function () {
-                    return this.nights++
+                    return this.filter.nights++
                 }
             },
             mounted: function () {
@@ -134,7 +114,7 @@
             type: 'city'
         })
 
-        placesAutocomplete.on('change', e => App.cityUpdate(e.suggestion));
+        placesAutocomplete.on('change', e => app.cityUpdate(e.suggestion));
 
     </script>
 @endpush
