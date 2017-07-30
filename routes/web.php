@@ -22,6 +22,7 @@ Route::get('/logout', function () {
 
 //Route::resource('users', 'UserController');
 Route::resource('listings', 'ListingController');
+Route::resource('stays', 'StayController');
 
 Auth::routes();
 
