@@ -172,6 +172,6 @@ $factory->define(App\Models\ListingImage::class, function (Faker\Generator $fake
     return [
         'listing_id' => $listing_id,
         'order' => rand(0,10),
-        'path' => "https://placeimg.com/640/480/arch"
+        'path' => "https://source.unsplash.com/collection/307969/1600x900?sig=" . $listing_id
     ];
 });
