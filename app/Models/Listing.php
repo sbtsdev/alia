@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model
 {
+    protected $appends = [
+        'kid_icon',
+        'pet_icon'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -43,5 +48,15 @@ class Listing extends Model
             ->get()
             ->toArray();
         return $matches;
+    }
+
+    public function getKidiconAttribute()
+    {
+        return $this->kid_friendly ? 'fa fa-check text-success' : 'fa fa-close text-danger';
+    }
+
+    public function getPeticonAttribute()
+    {
+        return $this->pet_friendly ? 'fa fa-check text-success' : 'fa fa-close text-danger';
     }
 }

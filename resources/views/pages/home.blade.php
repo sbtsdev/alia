@@ -67,14 +67,14 @@
                             <template v-if="listings.length > 0">
                                 <div class="listing" v-for="listing in listings">
                                     <img src="https://placehold.it/300x200">
-                                    <h3><a :href="'/listings/' + listing.id" v-text="listing.name"></a></h3>
+                                    <h3><a :href="'/listings/' + listing.id" target="_blank" v-text="listing.name"></a></h3>
                                     <p v-text="listing.description"></p>
                                     <p>
                                         <strong>Location:</strong> @{{ listing.city }}, @{{ listing.state }}<br>
                                         <strong>Neighborhood:</strong> @{{ listing.neighborhood }}
                                     </p>
                                     <p>
-                                        <strong>Sleeps:</strong> @{{ listing.beds }}<br>
+                                        <strong>Sleeps:</strong> @{{ listing.beds }} &nbsp;&nbsp;&nbsp; <strong>Kid-friendly:</strong> <i :class="listing.kid_icon"></i> &nbsp;&nbsp;&nbsp; <strong>Pet-friendly:</strong> <i :class="listing.pet_icon"></i><br>
                                     </p>
                                     <p>
                                         <br>
