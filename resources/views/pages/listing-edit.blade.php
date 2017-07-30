@@ -32,23 +32,15 @@
                         <label for="zip">Zip</label>
                         <input type="text" class="form-control" name="zip" value="{{ $zip }}"/>
                         <label for="kid_friendly">Kid Friendly</label>
-                        <input type="checkbox" class="form-control" name="kid_friendly" value="{{ $kid_friendly }}"/>
+                        <input type="checkbox" class="form-control" name="kid_friendly" value="1" {{ $kid_friendly ? 'checked' : '' }}/>
                         <label for="pet_friendly">Pet Friendly</label>
-                        <input type="checkbox" class="form-control" name="pet_friendly" value="{{ $pet_friendly }}"/>
+                        <input type="checkbox" class="form-control" name="pet_friendly" value="1" {{ $pet_friendly ? 'checked' : '' }}/>
                         <label for="max_stay_days">Max Stay (Days)</label>
                         <input type="number" class="form-control" name="max_stay_days" value="{{ $max_stay_days }}"/>
                         <label for="beds">Beds</label>
                         <input type="number" class="form-control" name="beds" value="{{ $beds }}"/>
                     </div>
                     <button class="btn btn-primary" type="submit">Update</button>
-                    <hr>
-                    <div class="form-group">
-                        <label for="name">New Password</label>
-                        <input type="password" class="form-control" name="password" />
-                        <label for="name">Confirm Password</label>
-                        <input type="password" class="form-control" />
-                    </div>
-                    <button class="btn btn-primary" type="submit">Change</button>
                 </form>
             </div>
         </div>

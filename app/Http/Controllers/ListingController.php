@@ -72,7 +72,20 @@ class ListingController extends Controller
     public function update(Request $request, $id)
     {
         $listing = Listing::find($id);
-        return view('pages.listing-edit', $listing);
+        $listing->name = $request->name;
+        $listing->description = $request->description;
+        $listing->type = $request->type;
+        $listing->street1 = $request->street1;
+        $listing->street2 = $request->street2;
+        $listing->city = $request->city;
+        $listing->state = $request->state;
+        $listing->zip = $request->zip;
+        $listing->kid_friendly = $request->kid_friendly == "1";
+        $listing->pet_friendly = $request->pet_friendly == "1";
+        $listing->max_stay_days = $request->max_stay_days;
+        $listing->beds = $request->beds;
+        $listing->save();
+        return back()->withListing($listing);
     }
 
     /**
