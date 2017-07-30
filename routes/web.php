@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +14,12 @@ use App\Models\User;
 Route::get('/', function () {
     return view('pages.home');
 });
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+});
+
 //Route::resource('users', 'UserController');
 Route::resource('listings', 'ListingController');
 
