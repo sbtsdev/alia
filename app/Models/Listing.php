@@ -8,7 +8,8 @@ class Listing extends Model
 {
     protected $appends = [
         'kid_icon',
-        'pet_icon'
+        'pet_icon',
+        'listing_type'
     ];
 
     public function user()
@@ -58,5 +59,18 @@ class Listing extends Model
     public function getPeticonAttribute()
     {
         return $this->pet_friendly ? 'fa fa-check text-success' : 'fa fa-close text-danger';
+    }
+
+    public function getListingtypeAttribute()
+    {
+        $values = [
+            'full_apartment' => 'Full Apartment',
+            'attached_apartment' => 'Attached Apartment',
+            'full_house' => 'Full House',
+            'single_room' => 'Room(s)',
+            'bed' => 'Bed'
+        ];
+
+        return $values[$this->type];
     }
 }

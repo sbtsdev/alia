@@ -74,7 +74,7 @@
                                         <strong>Neighborhood:</strong> @{{ listing.neighborhood }}
                                     </p>
                                     <p>
-                                        <strong>Sleeps:</strong> @{{ listing.beds }} &nbsp;&nbsp;&nbsp; <strong>Kid-friendly:</strong> <i :class="listing.kid_icon"></i> &nbsp;&nbsp;&nbsp; <strong>Pet-friendly:</strong> <i :class="listing.pet_icon"></i><br>
+                                        <strong>Sleeps:</strong> @{{ listing.beds }} &nbsp;&nbsp;&nbsp; <strong>Kid-friendly:</strong> <i :class="listing.kid_icon"></i> &nbsp;&nbsp;&nbsp; <strong>Pet-friendly:</strong> <i :class="listing.pet_icon"></i> &nbsp;&nbsp;&nbsp; <strong>Listing type:</strong> @{{ listing.listing_type }}<br>
                                     </p>
                                     <p>
                                         <br>
