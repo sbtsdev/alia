@@ -37,8 +37,11 @@ class ListingController extends Controller
      */
     public function create()
     {
-        return view('pages.listing-create')
-            ->withTypes(Listing::getTypes());
+        $data = [
+            'types' => Listing::$types
+        ];
+
+        return view('pages.listing-create', $data);
     }
 
     /**
@@ -59,7 +62,7 @@ class ListingController extends Controller
         $listing->state = $request->state;
         $listing->zip = $request->zip;
         $listing->kid_friendly = $request->kid_friendly == "1";
-        $listing->pet_friendly = $request->pet_friendly == "1";       
+        $listing->pet_friendly = $request->pet_friendly == "1";
         $listing->max_stay_days = $request->max_stay_days;
         $listing->beds = $request->beds;
         $listing->user_id = Auth::id();
@@ -153,7 +156,7 @@ class ListingController extends Controller
     public function update(Request $request, $id)
     {
         $listing = Listing::find($id);
-        
+
         $listing->name = $request->name;
         $listing->description = $request->description;
         $listing->type = $request->type;

@@ -10,7 +10,6 @@
                             <a href="{{route('listings.create')}}" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i> New Listing</a>
                             <h3>Listings</h3>
                             <hr>
-
                             <div>
                                 @if ($listings->count() > 0)
                                     @foreach($listings as $listing)
