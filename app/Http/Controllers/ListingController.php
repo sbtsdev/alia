@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Models\Availability;
 use GuzzleHttp\Client;
 //use Guzzle\Http\Client;
 use Auth;
@@ -58,7 +59,7 @@ class ListingController extends Controller
         $listing->state = $request->state;
         $listing->zip = $request->zip;
         $listing->kid_friendly = $request->kid_friendly == "1";
-        $listing->pet_friendly = $request->pet_friendly == "1";
+        $listing->pet_friendly = $request->pet_friendly == "1";       
         $listing->max_stay_days = $request->max_stay_days;
         $listing->beds = $request->beds;
         $listing->user_id = Auth::id();
@@ -81,6 +82,13 @@ class ListingController extends Controller
 
         try {
             $listing->save();
+
+            $availability = new Availability;
+            $availability->listing_id = $listing->id;
+            $availability->start_date = $request->start_date;
+            $availability->end_date = $request->end_date;
+            $availability->save();
+
             $success = true;
             $msg = 'New listing created.';
             return redirect()->route('listings.edit', $listing)
@@ -115,11 +123,17 @@ class ListingController extends Controller
      */
     public function edit($id)
     {
-        $listing = Listing::find($id);
+        $listing = Listing::with('availabilities')->find($id);
 
         if ($listing->user->id === Auth::id()) {
+            $availabilities = $listing->availabilities()->get();
+            foreach ($availabilities as $availability) {
+                $availability->start_date = str_replace(" 00:00:00", "", $availability->start_date);
+                $availability->end_date = str_replace(" 00:00:00", "", $availability->end_date);
+            }
+
             return view('pages.listing-edit', $listing)
-                ->withTypes(Listing::getTypes());
+                ->withTypes(Listing::getTypes())->withAvailabilities($availabilities);
         } else {
             return redirect()->route('listings.show', $listing->id);
         }
@@ -135,6 +149,7 @@ class ListingController extends Controller
     public function update(Request $request, $id)
     {
         $listing = Listing::find($id);
+        
         $listing->name = $request->name;
         $listing->description = $request->description;
         $listing->type = $request->type;
@@ -166,6 +181,13 @@ class ListingController extends Controller
 
         try {
             $listing->save();
+
+            $availability = new Availability;
+            $availability->listing_id = $listing->id;
+            $availability->start_date = $request->start_date;
+            $availability->end_date = $request->end_date;
+            $availability->save();
+
             $success = true;
             $msg = 'Saved listing.';
             return redirect()->route('listings.edit', $listing)

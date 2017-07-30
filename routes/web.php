@@ -33,3 +33,5 @@ Route::get('/account/stays', 'AccountController@stays')->name('account.stays');
 Route::post('/account', 'AccountController@update');
 
 Route::post('/filter', 'ListingController@filter');
+
+Route::get('/listings/{$listing}/availability/create');
