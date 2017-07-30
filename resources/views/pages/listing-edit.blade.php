@@ -50,16 +50,14 @@
                         <label for="pet_friendly">Pet Friendly</label>
                         <input type="checkbox" class="form-control" name="pet_friendly" value="1" {{ $pet_friendly ? 'checked' : '' }}/>
                         
-                        <h4>Availabilities</h4>                        
-                        @foreach($availabilities as $availability)
-                            <label for="start_date">Start Date</label>
-                            <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $availability->start_date }}" />
-                            <label for="end_date">End Date</label>
-                            <input type="date" class="form-control" id="end_date" name="end_date" value="{{ $availability->end_date }}" />
-                        @endforeach
-
-                        <hr>
+                        <h4>Availability</h4>                        
+                        <label for="start_date">Start Date</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $availability->start_date }}" />
+                        <label for="end_date">End Date</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" value="{{ $availability->end_date }}" />                        
                         
+                        <hr>
+
                         <label for="max_stay_days">Max Stay (Days)</label>
                         <input type="number" class="form-control" name="max_stay_days" value="{{ $max_stay_days }}"/>
                         <label for="beds">Beds</label>
