@@ -6,6 +6,23 @@
             <div class="row">
                 <div class="col-md-3">
                     <a href="#"><img src="https://placeimg.com/200/200/arch" width="200" height="200"/></a>
+
+                    <hr />
+
+                    <h3>Request to Stay Here</h3>
+
+                    <dl>
+                      <dd>Arrival Date</dd>
+                      <dt>
+                        <input type="date" class="form-control" id="startDate" />
+                      </dt>
+                      <dd>Departure Date</dd>
+                      <dt>
+                        <input type="date" class="form-control" id="endDate" />
+                      </dt>
+                    </dl>
+
+                    <button type="button" class="btn btn-primary btn-block">Request to Stay</button>
                 </div>
                 <div class="col-md-9">
                     <dl>

@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model
 {
+    protected $appends = [
+        'kid_icon',
+        'pet_icon',
+        'listing_type'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -13,12 +19,17 @@ class Listing extends Model
 
     public function stays()
     {
-         return $this->hasMany('App\Models\Stay');
+        return $this->hasMany('App\Models\Stay');
     }
 
     public function availabilities()
     {
-         return $this->hasMany('App\Models\Availability');
+        return $this->hasMany('App\Models\Availability');
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\ListingImage');
     }
 
     public function filter($request)
@@ -35,13 +46,37 @@ class Listing extends Model
         $beds = $filterData['beds'];
         $days = $filterData['nights'];
 
-
-        $matches = $this->whereBetween('latitude',  [$lat - $latDiff, $lat + $latDiff])
+        $matches = $this->with('images')
+            ->whereBetween('latitude',  [$lat - $latDiff, $lat + $latDiff])
             ->whereBetween('longitude',  [$long - $longDiff, $long + $longDiff])
             ->where('beds', '>=', $beds)
             ->where('max_stay_days', '>=', $days)
             ->get()
             ->toArray();
+
         return $matches;
+    }
+
+    public function getKidiconAttribute()
+    {
+        return $this->kid_friendly ? 'fa fa-check text-success' : 'fa fa-close text-danger';
+    }
+
+    public function getPeticonAttribute()
+    {
+        return $this->pet_friendly ? 'fa fa-check text-success' : 'fa fa-close text-danger';
+    }
+
+    public function getListingtypeAttribute()
+    {
+        $values = [
+            'full_apartment' => 'Full Apartment',
+            'attached_apartment' => 'Attached Apartment',
+            'full_house' => 'Full House',
+            'single_room' => 'Room(s)',
+            'bed' => 'Bed'
+        ];
+
+        return $values[$this->type];
     }
 }

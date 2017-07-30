@@ -1,6 +1,9 @@
 /*
  * Bootstrap overrides and additions
  */
+.text-danger { color:#e83c38; }
+.text-success { color:#4abd4c; }
+
 .form-control {
     border-radius:3px;
 }
@@ -37,9 +40,11 @@
     text-align:center;
 }
 
-a {
-    color:#4aa4b5;
-}
+a,
+a:hover,
+a:focus,
+a:active,
+a:active:focus  { color:#4aa4b5; }
 
 [v-cloak] { display:none; }
 
@@ -155,7 +160,7 @@ nav a i {
 }
 
 .listings {
-    margin-top:60px;
+    margin-top:40px;
     min-height:100%;
 }
 
@@ -180,6 +185,7 @@ nav a i {
 .listing img {
     float:left;
     margin-right:30px;
+    width:300px;
 }
 
 .listing h3 { margin-top:0; }
