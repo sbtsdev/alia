@@ -19,6 +19,7 @@
                 <a href="/"><i class="fa fa-home"></i> Home</a>
                 @if (Auth::check())
                     <a href="/account"><i class="fa fa-user-circle-o"></i> Account</a>
+                    <a href="/logout"><i class="fa fa-sign-out"></i> Log out</a>
                 @else
                     <a href="/login"><i class="fa fa-sign-in"></i> Login</a>
                 @endif

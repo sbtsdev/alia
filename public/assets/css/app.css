@@ -187,16 +187,32 @@ nav a i {
     padding-top:30px;
 }
 
+.listing-img {
+    position:relative;
+    width:100%;
+    min-height:200px;
+}
+
+.listing-img i {
+    color:#aaa;
+    font-size:2.4em;
+    position:absolute;
+    top:80px;
+    text-align:center;
+    width:100%;
+    z-index:1;
+}
+
 .listing:first-child {
     border:0;
     margin:0;
     padding:0;
 }
 
-.listing img {
-    float:left;
-    margin-right:30px;
+.listing-img img {
+    position:relative;
     width:100%;
+    z-index:2;
 }
 
 .listing h3 { margin-top:0; }

@@ -10,9 +10,15 @@
                             <div class="listing">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        @if (!empty($images))
-                                        <img src="{{ $images[0]['path'] }}" alt="Image for {{ $name }}">
-                                        @endif
+                                        <div class="listing-img">
+                                            @if (!empty($images))
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                                <img src="{{ $images[0]['path'] }}" alt="Image for {{ $name }}">
+                                            @else
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                                <img src="/assets/img/no-listing-image.png" alt="No listing image">
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <h3>{{ $name }}</h3>
