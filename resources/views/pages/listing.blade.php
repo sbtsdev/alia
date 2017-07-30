@@ -22,23 +22,29 @@
                                         <p>
                                             <strong>Sleeps:</strong> {{ $beds }} &nbsp;&nbsp;&nbsp; <strong>Kid-friendly:</strong> <i class="{{ $kid_icon }}"></i> &nbsp;&nbsp;&nbsp; <strong>Pet-friendly:</strong> <i class="{{ $pet_icon }}"></i> &nbsp;&nbsp;&nbsp; <strong>Listing type:</strong> {{ $listing_type }}<br>
                                         </p>
-                                        <p>
-                                            <br>
-                                            <a class="btn btn-coral">Request stay</a>
-                                        </p>
                                         <hr>
-                                        <h3>Request to Stay Here</h3>
-                                        <dl>
-                                            <dd>Arrival Date</dd>
-                                            <dt>
-                                                <input type="date" class="form-control" id="startDate" />
-                                            </dt>
-                                            <dd>Departure Date</dd>
-                                            <dt>
-                                                <input type="date" class="form-control" id="endDate" />
-                                            </dt>
-                                        </dl>
-                                        <button type="button" class="btn btn-primary btn-block">Request to Stay</button>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <form id="form">
+                                                    <div class="form-group">
+                                                        <label for="startDate">Arrival</label>
+                                                        <input type="date" class="form-control" id="startDate" name="startDate">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="endDate">Departure</label>
+                                                        <input type="date" class="form-control" id="endDate" name="endDate">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <br>
+                                                        @if (Auth::check())
+                                                            <button type="submit" class="btn btn-coral">Request stay</button>
+                                                        @else
+                                                            <button type="button" class="btn btn-coral" disabled>Request stay</button> &nbsp; <small>(Must be logged in)</small>
+                                                        @endif
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
