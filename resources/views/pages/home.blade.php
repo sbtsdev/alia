@@ -57,23 +57,27 @@
             </div>
         </div>
     </section>
-    <section id="listings" class="listings" v-if="listings" v-cloak>
+    <section id="listings" class="listings" v-if="listings.length > 0" v-cloak>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <div class="listing">
+                            <div class="listing" v-for="listing in listings">
                                 <img src="https://placehold.it/300x200">
-                                <h3>Place name</h3>
-                            </div>
-                            <div class="listing">
-                                <img src="https://placehold.it/300x200">
-                                <h3>Place name</h3>
-                            </div>
-                            <div class="listing">
-                                <img src="https://placehold.it/300x200">
-                                <h3>Place name</h3>
+                                <h3 v-text="listing.name"></h3>
+                                <p v-text="listing.description"></p>
+                                <p>
+                                    <strong>Location:</strong> @{{ listing.city }}, @{{ listing.state }}<br>
+                                    <strong>Neighborhood:</strong> @{{ listing.neighborhood }}
+                                </p>
+                                <p>
+                                    <strong>Available beds:</strong> @{{ listing.beds }}<br>
+                                </p>
+                                <p>
+                                    <br>
+                                    <a class="btn btn-primary" :href="'/listings/' + listing.id">View listing</a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -96,7 +100,7 @@
                     beds: 1,
                     nights: 1
                 },
-                listings: true,
+                listings: [],
                 status: 'ready'
             },
             methods: {
@@ -123,13 +127,13 @@
 
                     this.$http.post('/filter', { filter: this.filter }).then(function (response) {
 
-                        console.log(response)
-                        this.status = 'ready'
-                        this.gotEm()
+                        app.status = 'ready'
+                        app.listings = response.data
+                        app.gotEm()
 
                     }).catch(function (error) {
 
-                        this.status = 'error'
+                        app.status = 'error'
 
                         setTimeout(function () {
                             app.status = 'ready'
@@ -139,14 +143,13 @@
                 gotEm: function () {
                     $('html, body').animate({
                         scrollTop: window.innerHeight - 90
-                    }, 400);
+                    }, 400)
                 },
                 getFilterOffset: function () {
                     return window.innerHeight - 190
                 }
             },
             mounted: function () {
-                console.log(this.getFilterOffset())
                 $('.filter').affix({
                     offset: {
                         top: this.getFilterOffset(),
