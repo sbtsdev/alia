@@ -20,7 +20,9 @@
                                     </div>
                                 @endif
                             @endif
-                            <form class="form" method="POST" action="/listings">
+                            <form class="form" method="POST" action="/listings/{{ $listing->id }}">
+                                <input name="_method" type="hidden" value="PUT">
+                                {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="listing-img">

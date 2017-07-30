@@ -173,7 +173,7 @@ class ListingController extends Controller
             );
         } catch (\Exception $ex) {
             $success = false;
-            $msg = "Could not save listing. No valid Lattiude and Longitude found for result";
+            $msg = "Could not save listing. No valid Latiude and Longitude found for result";
             return redirect('listings/create')
                 ->withInput()
                 ->with(['success' => $success, 'message' => $msg]);
@@ -185,11 +185,13 @@ class ListingController extends Controller
         try {
             $listing->save();
 
+            /*
             $availability = $listing->availabilities()->get()[0];
             $availability->listing_id = $listing->id;
             $availability->start_date = $request->start_date;
             $availability->end_date = $request->end_date;
             $availability->save();
+            */
 
             $success = true;
             $msg = 'Saved listing.';
