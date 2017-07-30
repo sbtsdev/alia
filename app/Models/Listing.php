@@ -19,8 +19,7 @@ class Listing extends Model
     protected $appends = [
         'kid_icon',
         'pet_icon',
-        'listing_type',
-        'type_drop'
+        'listing_type'
     ];
 
     public function user()
