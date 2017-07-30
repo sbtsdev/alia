@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model
 {
+    public static $types = [
+        'Apartment' => 'Apartment',
+        'full_apartment' => 'Full Apartment',
+        'attached_apartment' => 'Attached Apartment',
+        'full_house' => 'Full House',
+        'single_room' => 'Room(s)',
+        'bed' => 'Bed',
+        'house' => 'House'
+    ];
+
     protected $appends = [
         'kid_icon',
         'pet_icon',
@@ -69,25 +79,16 @@ class Listing extends Model
 
     public function getListingtypeAttribute()
     {
-        $values = [
-            'Apartment' => 'Apartment',
-            'full_apartment' => 'Full Apartment',
-            'attached_apartment' => 'Attached Apartment',
-            'full_house' => 'Full House',
-            'single_room' => 'Room(s)',
-            'bed' => 'Bed',
-            'house' => 'House'
-        ];
-
-        return $values[$this->type];
+        return Listing::$types[$this->type];
     }
 
     public static function getTypes()
     {
-        return ['full_apartment', 'full_house', 'single_room', 'attached_apartment', 'bed'];
+        return Listing::$types;
     }
 
-    public function getRequestedStays() {
-      return $this->stays()->where('status', 'Requested');
+    public function getRequestedStays()
+    {
+        return $this->stays()->where('status', 'Requested');
     }
 }
