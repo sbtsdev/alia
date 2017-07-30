@@ -79,6 +79,7 @@ $factory->define(App\Models\Listing::class, function (Faker\Generator $faker) {
         'type' =>  $types[array_rand($types)],
         'street1' => $faker->streetAddress,
         'street2' => "Apt. " . $faker->buildingNumber,
+        'neighborhood' => $faker->city,
         'city' => $faker->city,
         'state' => 'KY',
         'zip' => $faker->postcode,

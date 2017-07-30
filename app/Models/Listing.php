@@ -20,4 +20,26 @@ class Listing extends Model
     {
          return $this->hasMany('App\Models\Availability');
     }
+
+    public function filter($request)
+    {
+        //1 degree in latiude is ~69 miles
+        $latDiff = 0.44;  // 30 miles
+        //1 degree longitude is ~55 miles
+        $longDiff = 0.55;
+        //hypoteneuse is about 42 miles this way
+
+        $lat = $request->lat;
+        $long  = $request->lng;
+        $beds = $request->beds;
+        $days = $request->nights;
+
+        $matches = $this->whereBetween('latitude',  [$lat - $latDiff, $lat + $latDiff])
+            ->whereBetween('longitude',  [$long - $longDiff, $long + $longDiff])
+            ->where('beds', '>=', $beds)
+            ->where('max_stay_days', '>=', $days)
+            ->get()
+            ->toArray();
+        return $matches;
+    }
 }

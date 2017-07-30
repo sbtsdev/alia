@@ -24,6 +24,8 @@ Auth::routes();
 Route::get('/account', 'AccountController@edit');
 Route::post('/account', 'AccountController@update');
 
+Route::post('/filter', 'ListingController@filter');
+
 /*
 Route::get('/account', function() {
   $user = User::find(Auth::id());

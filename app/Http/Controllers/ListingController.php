@@ -7,6 +7,8 @@ use App\Models\Listing;
 
 class ListingController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -97,5 +99,12 @@ class ListingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filter(Request $request)
+    {
+        //should check that receives back all necessary data
+        $lat = $request->latitude;
+        return (new Listing)->filter($request);
     }
 }

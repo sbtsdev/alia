@@ -24,6 +24,7 @@ class CreateListingsTable extends Migration
             $table->string('street2', 200)->nullable();
             $table->string('city', 100);
             $table->string('state', 50);
+            $table->string('neighborhood', 50)->nullable();
             $table->string('zip', '30');
             $table->double('latitude', '10', '6');
             $table->double('longitude', '10', '6');
