@@ -6,15 +6,15 @@
             <div class="container">
                 <form id="form">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-md-10">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="city">Find a city</label>
                                         <input type="text" class="form-control input-lg" id="city">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="beds">How many people?</label>
                                         <div class="input-group">
@@ -28,7 +28,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="nights">How many nights?</label>
                                         <div class="input-group">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label>&nbsp;</label>
                                 <button class="btn btn-lg btn-block btn-coral" type="button" v-if="status == 'clean'" @click="findPlace">Find a Place</button>
@@ -61,18 +61,18 @@
     <section id="listings" class="listings" v-if="status != 'clean'" v-cloak>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <template v-if="listings.length > 0">
                                 <div class="listing" v-for="listing in listings">
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-md-4">
                                             <template v-if="listing.images.length > 0">
                                                 <img :src="listing.images[0].path" :alt="'Image for ' + listing.name">
                                             </template>
                                         </div>
-                                        <div class="col-lg-8">
+                                        <div class="col-md-8">
                                             <h3><a :href="'/listings/' + listing.id" target="_blank" v-text="listing.name"></a></h3>
                                             <p v-text="listing.description"></p>
                                             <p>

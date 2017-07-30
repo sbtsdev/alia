@@ -29,7 +29,7 @@ class Listing extends Model
 
     public function images()
     {
-        return $this->hasMany('App\Models\ListingImage');
+        return $this->hasMany('App\Models\ListingImage')->orderBy('order', 'asc');
     }
 
     public function filter($request)
