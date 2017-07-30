@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Availability;
 use GuzzleHttp\Client;
-//use Guzzle\Http\Client;
+
 use Auth;
 
 class ListingController extends Controller
@@ -126,21 +126,17 @@ class ListingController extends Controller
      */
     public function edit($id)
     {
-        $listing = Listing::with('availabilities')->find($id);
+        $listing = Listing::with('availabilities')->where('id', $id)->first();
 
         if ($listing->user->id === Auth::id()) {
-            // $availabilities = $listing->availabilities()->get();
-            // foreach ($availabilities as $availability) {
-            //     $availability->start_date = str_replace(" 00:00:00", "", $availability->start_date);
-            //     $availability->end_date = str_replace(" 00:00:00", "", $availability->end_date);
-            // }
 
-            $availability = $listing->availabilities()->get()[0];
-            $availability->start_date = str_replace(" 00:00:00", "", $availability->start_date);
-            $availability->end_date = str_replace(" 00:00:00", "", $availability->end_date);
+            $data = [
+                'types' => Listing::$types,
+                'listing' => $listing
+            ];
 
-            return view('pages.listing-edit', $listing)
-                ->withTypes(Listing::getTypes())->withAvailability($availability);
+            return view('pages.listing-edit', $data);
+
         } else {
             return redirect()->route('listings.show', $listing->id);
         }
