@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use App\Models\Stay;
+use App\Models\Listing;
 
 class AccountController extends Controller
 {
@@ -33,7 +34,18 @@ class AccountController extends Controller
 
     public function stays()
     {
-        $stays = Stay::where('stayer_id', Auth::id())->get();
+        $myId = Auth::id();
+        $stays = Stay::where('stayer_id', $myId)
+            ->with(['listing'])
+            ->get()
+            ->map(function ($stay) use ($myId) {
+                $n = clone $stay;
+                $n->meAsHost = $stay->id === $myId;
+                $n->hostName = User::find($stay->listing->user_id)->name;
+                $n->listingName = $stay->listing->name;
+                $n->formedStay = date('F j', strtotime($stay->start_date)).' &ndash; '.date('F j, Y', strtotime($stay->end_date));
+                return $n;
+            });
         return view('pages.account-stays')->withStays($stays);
     }
 
