@@ -24,7 +24,7 @@
 @endif
                     <td>{{$stay->listingName}}</td>
                     <td>
-                        @if($stay->status === 'requested')
+                        @if($stay->status === 'Requested')
                         <a class="btn btn-info">Accept</a>
                         <a class="btn btn-danger">Deny</a>
                         <a class="btn btn-warning">Cancel</a>
