@@ -28,7 +28,11 @@
                         <label for="description">Description</label>
                         <input type="text" class="form-control" name="description" value="{{old('description')}}" />
                         <label for="type">Type</label>
-                        <input type="text" class="form-control" name="type" value="{{old('type')}}" />
+                        <select class="form-control select" name="type">
+                        @foreach($types as $type)
+                            <option>{{$type}}</option>
+                        @endforeach
+                        </select>
                         <label for="street1">Street 1</label>
                         <input type="text" class="form-control" name="street1" value="{{old('street1')}}"/>
                         <label for="street2">Street 2</label>

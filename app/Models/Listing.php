@@ -79,4 +79,9 @@ class Listing extends Model
 
         return $values[$this->type];
     }
+
+    public static function getTypes()
+    {
+        return ['full_apartment', 'full_house', 'single_room', 'attached_apartment', 'bed'];
+    }
 }

@@ -1,10 +1,9 @@
 @extends('layout')
 
 @section('content')
-@if($listings)
 <div class="row">
     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1">
-        <h1>My Listings</h1>
+        <h1>My Stays</h1>
         <table class="col-lg-8 table table-striped table-bordered">
             <thead>
                 <tr>
@@ -40,8 +39,7 @@
             </tbody>
         </table>
     </div>
-@else
-    No listings found
-@endif
-</div>
+    @else
+        No listings found
+    @endif
 @endsection

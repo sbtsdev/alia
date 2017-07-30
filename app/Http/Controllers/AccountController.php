@@ -30,6 +30,12 @@ class AccountController extends Controller
         return view('pages.account-listings')->withListings($listings);
     }
 
+    public function stays()
+    {
+        $stays = User::find(Auth::id())->stays;
+        return view('pages.account-stays')->withStays($stays);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -44,29 +50,22 @@ class AccountController extends Controller
         $user->description = $request->description;
         $user->email = $request->email;
 
-        $msg = "";
-        $success = "";
+        $msg = '';
+        $success = '';
 
-        try{
+        try {
             $user->save();
-
-            $msg = "Account updated!";
-
-            $success = "yes";
-
-        }catch(\Exception $ex){
-            if ($ex->errorInfo[0] == "23000" && $ex->errorInfo[1] == 1062){
-                $msg = "This email address belongs to another account. We should probably keep you from doing stupid things.";
-            }else{
-                $msg = "Something terrible happened. Game over man.";
+            $msg = 'Account updated!';
+            $success = 'yes';
+        } catch (\Exception $ex) {
+            if ($ex->errorInfo[0] == '23000' && $ex->errorInfo[1] == 1062) {
+                $msg = 'This email address belongs to another account. We should probably keep you from doing stupid things.';
+            } else {
+                $msg = 'Something terrible happened. Game over man.';
             }
-
-            $success = "no";
+            $success = 'no';
         }
 
-        //return back()->withUser($user);
-        return back()->with(["message" => $msg, "success" => $success]);
+        return back()->with(['message' => $msg, 'success' => $success]);
     }
-
-
 }

@@ -34,7 +34,8 @@ class ListingController extends Controller
      */
     public function create()
     {
-        return view('pages.listing-create');
+        return view('pages.listing-create')
+            ->withTypes(Listing::getTypes());
     }
 
     /**
@@ -70,7 +71,7 @@ class ListingController extends Controller
         try {
             $listing->save();
             $success = true;
-            $msg = "New listing created.";
+            $msg = 'New listing created.';
             return redirect()->route('listings.edit', $listing)
                 ->with(['success' => $success, 'message' => $msg]);
         } catch (\Exception $ex) {
@@ -105,7 +106,8 @@ class ListingController extends Controller
         $listing = Listing::find($id);
 
         if ($listing->user->id === Auth::id()) {
-            return view('pages.listing-edit', $listing);
+            return view('pages.listing-edit', $listing)
+                ->withTypes(Listing::getTypes());
         } else {
             return redirect()->route('listings.show', $listing->id);
         }
@@ -133,8 +135,27 @@ class ListingController extends Controller
         $listing->pet_friendly = $request->pet_friendly == "1";
         $listing->max_stay_days = $request->max_stay_days;
         $listing->beds = $request->beds;
-        $listing->save();
-        return back()->withListing($listing);
+
+        list($lat, $long) = $this->geoCode(
+            $listing->street1.' '.$listing->street2.','.
+            $listing->city.','.$listing->state.' '.$listing->zip
+        );
+        $listing->latitude = $lat;
+        $listing->longitude = $long;
+
+        try {
+            $listing->save();
+            $success = true;
+            $msg = 'Saved listing.';
+            return redirect()->route('listings.edit', $listing)
+                ->with(['success' => $success, 'message' => $msg]);
+        } catch (\Exception $ex) {
+            $success = false;
+            $msg = "Could not save listing.";
+            return redirect('listings/'.$id.'/edit')
+                ->withInput()
+                ->with(['success' => $success, 'message' => $msg]);
+        }
     }
 
     /**
