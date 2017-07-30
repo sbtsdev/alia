@@ -4,15 +4,15 @@
     <section id="listings" class="listings">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="listing">
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-md-4">
                                         <img src="{{ $images[0]['path'] }}" alt="Image for {{ $name }}">
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-md-8">
                                         <h3>{{ $name }}</h3>
                                         <p>{{ $description }}</p>
                                         <p>
@@ -24,10 +24,10 @@
                                         </p>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-md-6">
                                                 <form class="form" method="POST" action="/stays">
-                                                  {{ csrf_field() }}
-                                                    <input type="hidden" name="listingId" value="{{ $id }}" />
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="listingId" value="{{ $id }}">
                                                     <div class="form-group">
                                                         <label for="startDate">Arrival</label>
                                                         <input type="date" class="form-control" id="startDate" name="startDate">

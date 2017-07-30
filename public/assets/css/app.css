@@ -44,7 +44,10 @@ a,
 a:hover,
 a:focus,
 a:active,
-a:active:focus  { color:#4aa4b5; }
+a:active:focus,
+.btn-link,
+.btn-link:focus,
+.btn-link:hover { color:#4aa4b5; }
 
 [v-cloak] { display:none; }
 
@@ -169,6 +172,11 @@ nav a i {
 
 .listings .panel-body {
     padding:30px;
+}
+
+.listings h3 {
+    color:#ff7979;
+    margin-top:0;
 }
 
 .listing {
