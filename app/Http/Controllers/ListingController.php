@@ -103,8 +103,6 @@ class ListingController extends Controller
 
     public function filter(Request $request)
     {
-        //should check that receives back all necessary data
-        $lat = $request->latitude;
         return (new Listing)->filter($request);
     }
 }

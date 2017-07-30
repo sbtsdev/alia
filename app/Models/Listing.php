@@ -29,10 +29,12 @@ class Listing extends Model
         $longDiff = 0.55;
         //hypoteneuse is about 42 miles this way
 
-        $lat = $request->lat;
-        $long  = $request->lng;
-        $beds = $request->beds;
-        $days = $request->nights;
+        $filterData = $request->input('filter');
+        $lat = $filterData['lat'];
+        $long = $filterData['lng'];
+        $beds = $filterData['beds'];
+        $days = $filterData['nights'];
+
 
         $matches = $this->whereBetween('latitude',  [$lat - $latDiff, $lat + $latDiff])
             ->whereBetween('longitude',  [$long - $longDiff, $long + $longDiff])
