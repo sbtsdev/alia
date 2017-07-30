@@ -24,12 +24,12 @@
 @endif
                     <td>{{$stay->listingName}}</td>
                     <td>
-                        @if($stay->status === 'Requested')
+                        @if($stay->meAsHost && $stay->status === 'Requested')
                         <a class="btn btn-info">Accept</a>
                         <a class="btn btn-danger">Deny</a>
                         <a class="btn btn-warning">Cancel</a>
                         @else
-                        {{$stay->status}}
+                        <span class="text-capitalize">{{$stay->status}}</span>
                         @endif
                     </td>
                     <td>{{$stay->formedStay}}</td>
