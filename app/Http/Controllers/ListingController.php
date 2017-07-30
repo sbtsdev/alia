@@ -60,7 +60,7 @@ class ListingController extends Controller
         $listing->beds = $request->beds;
         $listing->user_id = Auth::id();
 
-        list($lat, $long) = $this->geocode(
+        list($lat, $long) = $this->geoCode(
             $listing->street1.' '.$listing->street2.','.
             $listing->city.','.$listing->state.' '.$listing->zip
         );
