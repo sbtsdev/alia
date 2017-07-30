@@ -43,6 +43,14 @@
                         <input type="checkbox" class="form-control" name="kid_friendly" value="{{old('kid_friendly')}}1" />
                         <label for="pet_friendly">Pet Friendly</label>
                         <input type="checkbox" class="form-control" name="pet_friendly" value="{{old('pet_friendly')}}1" />
+
+                        <!-- <label for="availability">Availability</label>                         -->
+
+                        <label for="start_date">Start Date</label>
+                        <input type="date" class="form-control" name="start_date" value="{{old('start_date')}}" />
+                        <label for="end_date">End Date</label>
+                        <input type="date" class="form-control" name="end_date" value="{{old('end_date')}}" />
+
                         <label for="max_stay_days">Max Stay (Days)</label>
                         <input type="number" class="form-control" name="max_stay_days" value="{{old('max_stay_days')}}"/>
                         <label for="beds">Beds</label>
