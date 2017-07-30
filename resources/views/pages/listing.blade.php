@@ -10,7 +10,9 @@
                             <div class="listing">
                                 <div class="row">
                                     <div class="col-md-4">
+                                        @if (!empty($images))
                                         <img src="{{ $images[0]['path'] }}" alt="Image for {{ $name }}">
+                                        @endif
                                     </div>
                                     <div class="col-md-8">
                                         <h3>{{ $name }}</h3>
