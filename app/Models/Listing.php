@@ -19,12 +19,17 @@ class Listing extends Model
 
     public function stays()
     {
-         return $this->hasMany('App\Models\Stay');
+        return $this->hasMany('App\Models\Stay');
     }
 
     public function availabilities()
     {
-         return $this->hasMany('App\Models\Availability');
+        return $this->hasMany('App\Models\Availability');
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\ListingImage');
     }
 
     public function filter($request)
@@ -41,13 +46,14 @@ class Listing extends Model
         $beds = $filterData['beds'];
         $days = $filterData['nights'];
 
-
-        $matches = $this->whereBetween('latitude',  [$lat - $latDiff, $lat + $latDiff])
+        $matches = $this->with('images')
+            ->whereBetween('latitude',  [$lat - $latDiff, $lat + $latDiff])
             ->whereBetween('longitude',  [$long - $longDiff, $long + $longDiff])
             ->where('beds', '>=', $beds)
             ->where('max_stay_days', '>=', $days)
             ->get()
             ->toArray();
+
         return $matches;
     }
 

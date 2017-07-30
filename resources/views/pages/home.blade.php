@@ -66,7 +66,9 @@
                         <div class="panel-body">
                             <template v-if="listings.length > 0">
                                 <div class="listing" v-for="listing in listings">
-                                    <img src="https://placehold.it/300x200">
+                                    <template v-if="listing.images.length > 0">
+                                        <img :src="listing.images[0].path">
+                                    </template>
                                     <h3><a :href="'/listings/' + listing.id" target="_blank" v-text="listing.name"></a></h3>
                                     <p v-text="listing.description"></p>
                                     <p>
