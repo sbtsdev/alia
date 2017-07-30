@@ -25,7 +25,9 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <form id="form">
+                                                <form class="form" method="POST" action="/stays">
+                                                  {{ csrf_field() }}
+                                                    <input type="hidden" name="listingId" value="{{ $id }}" />
                                                     <div class="form-group">
                                                         <label for="startDate">Arrival</label>
                                                         <input type="date" class="form-control" id="startDate" name="startDate">

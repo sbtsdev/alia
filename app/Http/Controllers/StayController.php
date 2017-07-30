@@ -11,11 +11,13 @@ class StayController extends Controller
 
     public function __construct()
     {
+        /*
         $this->middleware('auth', [
             'only' => [
                 'create', 'store', 'edit', 'update'
             ]
         ]);
+        */
     }
 
     /**
@@ -47,11 +49,11 @@ class StayController extends Controller
     public function store(Request $request)
     {
         $stay = new Stay;
-        $stay->listing_id = $request->listing_id;
+        $stay->listing_id = $request->listingId;
         $stay->stayer_id = Auth::id();
         $stay->status = "Requested";
-        $stay->start_date = $request->start_date;
-        $stay->end_date = $request->end_date;
+        $stay->start_date = $request->startDate;
+        $stay->end_date = $request->endDate;
 
         try {
             $stay->save();
