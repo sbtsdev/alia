@@ -126,14 +126,18 @@ class ListingController extends Controller
         $listing = Listing::with('availabilities')->find($id);
 
         if ($listing->user->id === Auth::id()) {
-            $availabilities = $listing->availabilities()->get();
-            foreach ($availabilities as $availability) {
-                $availability->start_date = str_replace(" 00:00:00", "", $availability->start_date);
-                $availability->end_date = str_replace(" 00:00:00", "", $availability->end_date);
-            }
+            // $availabilities = $listing->availabilities()->get();
+            // foreach ($availabilities as $availability) {
+            //     $availability->start_date = str_replace(" 00:00:00", "", $availability->start_date);
+            //     $availability->end_date = str_replace(" 00:00:00", "", $availability->end_date);
+            // }
+
+            $availability = $listing->availabilities()->get()[0];
+            $availability->start_date = str_replace(" 00:00:00", "", $availability->start_date);
+            $availability->end_date = str_replace(" 00:00:00", "", $availability->end_date);
 
             return view('pages.listing-edit', $listing)
-                ->withTypes(Listing::getTypes())->withAvailabilities($availabilities);
+                ->withTypes(Listing::getTypes())->withAvailability($availability);
         } else {
             return redirect()->route('listings.show', $listing->id);
         }
@@ -182,7 +186,7 @@ class ListingController extends Controller
         try {
             $listing->save();
 
-            $availability = new Availability;
+            $availability = $listing->availabilities()->get()[0];
             $availability->listing_id = $listing->id;
             $availability->start_date = $request->start_date;
             $availability->end_date = $request->end_date;
