@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="hero">
-        <div class="filter">
+        <div class="filter" id="filter">
             <div class="container">
                 <form id="form">
                     <div class="row">
@@ -57,7 +57,7 @@
             </div>
         </div>
     </section>
-    <section class="listings" v-if="listings" v-cloak>
+    <section id="listings" class="listings" v-if="listings" v-cloak>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -96,7 +96,7 @@
                     beds: 1,
                     nights: 1
                 },
-                listings: 'asdf',
+                listings: true,
                 status: 'ready'
             },
             methods: {
@@ -138,11 +138,20 @@
                 },
                 gotEm: function () {
                     $('html, body').animate({
-                        scrollTop: $('.listings').offset().top
+                        scrollTop: window.innerHeight - 90
                     }, 400);
+                },
+                getFilterOffset: function () {
+                    return window.innerHeight - 190
                 }
             },
             mounted: function () {
+                console.log(this.getFilterOffset())
+                $('.filter').affix({
+                    offset: {
+                        top: this.getFilterOffset(),
+                    }
+                })
             }
         }).$mount('#app')
 
@@ -153,6 +162,5 @@
         })
 
         placesAutocomplete.on('change', e => app.cityUpdate(e.suggestion));
-
     </script>
 @endpush
