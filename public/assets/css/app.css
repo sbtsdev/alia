@@ -97,11 +97,32 @@ nav a i {
     height:100%;
 }
 
-.filter {
+.filter.affix-top {
     background:rgba(255,255,255,0.7);
     position:absolute;
     bottom:0;
     width:100%;
+}
+
+.filter.affix {
+    background:#fff;
+    border-bottom:1px solid #ddd;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:100;
+}
+
+.filter.affix .form-group {
+    padding:16px 0;
+}
+
+.filter.affix .form-control,
+.filter.affix .btn-lg {
+    font-size:14px;
+    padding:6px 12px;
+    height:34px;
+    line-height:1.42857143;
 }
 
 .filter .col-lg-6:first-child {
@@ -125,6 +146,7 @@ nav a i {
 .filter label {
     color:#5a5a5a;
     font-weight:400;
+    margin-bottom:4px;
     text-transform:uppercase;
 }
 
