@@ -94,7 +94,8 @@ class ListingController extends Controller
      */
     public function show($id)
     {
-        $listing = Listing::find($id);
+        $listing = Listing::with('images')->where('id', $id)->first();
+
         return view('pages.listing', $listing);
     }
 

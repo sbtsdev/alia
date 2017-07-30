@@ -62,9 +62,12 @@ body {
 
 header {
     background:#fff;
+    border-bottom:1px solid #ddd;
     position:relative;
     z-index:2;
 }
+
+.home header { border:none; }
 
 .logo {
     padding:18px 0;
@@ -185,7 +188,7 @@ nav a i {
 .listing img {
     float:left;
     margin-right:30px;
-    width:300px;
+    width:100%;
 }
 
 .listing h3 { margin-top:0; }

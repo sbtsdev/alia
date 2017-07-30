@@ -66,22 +66,28 @@
                         <div class="panel-body">
                             <template v-if="listings.length > 0">
                                 <div class="listing" v-for="listing in listings">
-                                    <template v-if="listing.images.length > 0">
-                                        <img :src="listing.images[0].path">
-                                    </template>
-                                    <h3><a :href="'/listings/' + listing.id" target="_blank" v-text="listing.name"></a></h3>
-                                    <p v-text="listing.description"></p>
-                                    <p>
-                                        <strong>Location:</strong> @{{ listing.city }}, @{{ listing.state }}<br>
-                                        <strong>Neighborhood:</strong> @{{ listing.neighborhood }}
-                                    </p>
-                                    <p>
-                                        <strong>Sleeps:</strong> @{{ listing.beds }} &nbsp;&nbsp;&nbsp; <strong>Kid-friendly:</strong> <i :class="listing.kid_icon"></i> &nbsp;&nbsp;&nbsp; <strong>Pet-friendly:</strong> <i :class="listing.pet_icon"></i> &nbsp;&nbsp;&nbsp; <strong>Listing type:</strong> @{{ listing.listing_type }}<br>
-                                    </p>
-                                    <p>
-                                        <br>
-                                        <a class="btn btn-coral" :href="'/listings/' + listing.id">Request stay</a>
-                                    </p>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <template v-if="listing.images.length > 0">
+                                                <img :src="listing.images[0].path" :alt="'Image for ' + listing.name">
+                                            </template>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h3><a :href="'/listings/' + listing.id" target="_blank" v-text="listing.name"></a></h3>
+                                            <p v-text="listing.description"></p>
+                                            <p>
+                                                <strong>Location:</strong> @{{ listing.city }}, @{{ listing.state }}<br>
+                                                <strong>Neighborhood:</strong> @{{ listing.neighborhood }}
+                                            </p>
+                                            <p>
+                                                <strong>Sleeps:</strong> @{{ listing.beds }} &nbsp;&nbsp;&nbsp; <strong>Kid-friendly:</strong> <i :class="listing.kid_icon"></i> &nbsp;&nbsp;&nbsp; <strong>Pet-friendly:</strong> <i :class="listing.pet_icon"></i> &nbsp;&nbsp;&nbsp; <strong>Listing type:</strong> @{{ listing.listing_type }}<br>
+                                            </p>
+                                            <p>
+                                                <br>
+                                                <a class="btn btn-coral" :href="'/listings/' + listing.id">Request stay</a>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </template>
                             <template v-if="listings.length == 0">
