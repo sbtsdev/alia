@@ -26,7 +26,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="listing-img">
-                                            @if (!empty($listing->images))
+                                            @if ($listing->images->count() > 0)
                                                 <i class="fa fa-spinner fa-spin"></i>
                                                 <img src="{{ $listing->images[0]['path'] }}" alt="Image for {{ $listing->name }}">
                                             @else
