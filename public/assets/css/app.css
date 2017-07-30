@@ -152,6 +152,7 @@ nav a i {
 
 .listings {
     margin-top:60px;
+    min-height:100%;
 }
 
 .listings .panel-body {
