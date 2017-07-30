@@ -44,6 +44,10 @@
                         <input type="checkbox" class="form-control" name="kid_friendly" value="1" {{ $kid_friendly ? 'checked' : '' }}/>
                         <label for="pet_friendly">Pet Friendly</label>
                         <input type="checkbox" class="form-control" name="pet_friendly" value="1" {{ $pet_friendly ? 'checked' : '' }}/>
+                        
+                        <label for="availability">Availability</label>
+                        <input type="date" class="form-control" name="availability" value="{{ $availability }}"/>
+
                         <label for="max_stay_days">Max Stay (Days)</label>
                         <input type="number" class="form-control" name="max_stay_days" value="{{ $max_stay_days }}"/>
                         <label for="beds">Beds</label>

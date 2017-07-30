@@ -125,6 +125,7 @@ class ListingController extends Controller
     public function update(Request $request, $id)
     {
         $listing = Listing::find($id);
+        
         $listing->name = $request->name;
         $listing->description = $request->description;
         $listing->type = $request->type;
