@@ -26,7 +26,8 @@ Route::resource('listings', 'ListingController');
 Auth::routes();
 
 Route::get('/account', 'AccountController@edit')->name('account');
-Route::get('/account/listings', 'AccountController@listings')->name('account.listing');
+Route::get('/account/listings', 'AccountController@listings')->name('account.listings');
+Route::get('/account/stays', 'AccountController@stays')->name('account.stays');
 Route::post('/account', 'AccountController@update');
 
 Route::post('/filter', 'ListingController@filter');

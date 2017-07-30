@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use App\Models\Stay;
 
 class AccountController extends Controller
 {
@@ -32,7 +33,7 @@ class AccountController extends Controller
 
     public function stays()
     {
-        $stays = User::find(Auth::id())->stays;
+        $stays = Stay::where('stayer_id', Auth::id())->get();
         return view('pages.account-stays')->withStays($stays);
     }
 

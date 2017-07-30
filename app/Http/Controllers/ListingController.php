@@ -197,7 +197,7 @@ class ListingController extends Controller
         if (curl_errno($ch)) {
             echo 'Error:' . curl_error($ch);
         }
-        curl_close ($ch);
+        curl_close($ch);
 
 
         //dd(json_decode($result));
@@ -213,7 +213,6 @@ class ListingController extends Controller
 
         return [$geo->lat, $geo->lng];
        // return ['lat' => $geo->lat, 'lng' => $geo->lng];
-
     }
 
     private function geoCode($address)
@@ -227,5 +226,4 @@ class ListingController extends Controller
     {
         return mt_rand($low*1000, $high*1000) / 10000;
     }
-
 }
