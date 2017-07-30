@@ -35,29 +35,38 @@
                                 <div class="col-md-9">
                                     <form class="form" method="POST" action="/account">
                                         {{ csrf_field() }}
-
-                                        <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" name="name" value="{{ $name }}">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" class="form-control" name="name" value="{{ $name }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" class="form-control" name="email" value="{{ $email }}">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Description</label>
                                             <input type="text" class="form-control" name="description" value="{{ $description }}">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="email" class="form-control" name="email" value="{{ $email }}">
-                                        </div>
                                         <br>
                                         <button class="btn btn-primary" type="submit">Update</button>
                                         <hr>
-                                        <div class="form-group">
-                                            <label for="name">New Password</label>
-                                            <input type="password" class="form-control" name="password">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Confirm Password</label>
-                                            <input type="password" class="form-control">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">New Password</label>
+                                                    <input type="password" class="form-control" name="password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name">Confirm Password</label>
+                                                    <input type="password" class="form-control">
+                                                </div>
+                                            </div>
                                         </div>
                                         <br>
                                         <button class="btn btn-primary" type="submit">Change</button>

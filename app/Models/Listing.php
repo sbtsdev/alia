@@ -80,7 +80,7 @@ class Listing extends Model
 
     public function getListingtypeAttribute()
     {
-        return $this->types[$this->type];
+        return Listing::$types[$this->type];
     }
 
     public static function getTypes()
