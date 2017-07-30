@@ -47,7 +47,8 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label>&nbsp;</label>
-                                <button class="btn btn-lg btn-block btn-coral" type="button" v-if="status == 'ready'" @click="findPlace">Find a Place</button>
+                                <button class="btn btn-lg btn-block btn-coral" type="button" v-if="status == 'clean'" @click="findPlace">Find a Place</button>
+                                <button class="btn btn-lg btn-block btn-coral" type="button" v-if="status == 'dirty'" @click="findPlace">Search again</button>
                                 <button class="btn btn-lg btn-block btn-default" type="button" v-if="status == 'processing'" disabled v-cloak><i class="fa fa-spinner fa-spin"></i></button>
                                 <button class="btn btn-lg btn-block btn-danger" type="button" v-if="status == 'error'" v-cloak><i class="fa fa-exclamation-triangle"></i> Error</button>
                             </div>
@@ -57,28 +58,36 @@
             </div>
         </div>
     </section>
-    <section id="listings" class="listings" v-if="listings.length > 0" v-cloak>
+    <section id="listings" class="listings" v-if="status != 'clean'" v-cloak>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <div class="listing" v-for="listing in listings">
-                                <img src="https://placehold.it/300x200">
-                                <h3 v-text="listing.name"></h3>
-                                <p v-text="listing.description"></p>
-                                <p>
-                                    <strong>Location:</strong> @{{ listing.city }}, @{{ listing.state }}<br>
-                                    <strong>Neighborhood:</strong> @{{ listing.neighborhood }}
-                                </p>
-                                <p>
-                                    <strong>Available beds:</strong> @{{ listing.beds }}<br>
-                                </p>
-                                <p>
-                                    <br>
-                                    <a class="btn btn-primary" :href="'/listings/' + listing.id">View listing</a>
-                                </p>
-                            </div>
+                            <template v-if="listings.length > 0">
+                                <div class="listing" v-for="listing in listings">
+                                    <img src="https://placehold.it/300x200">
+                                    <h3><a :href="'/listings/' + listing.id" v-text="listing.name"></a></h3>
+                                    <p v-text="listing.description"></p>
+                                    <p>
+                                        <strong>Location:</strong> @{{ listing.city }}, @{{ listing.state }}<br>
+                                        <strong>Neighborhood:</strong> @{{ listing.neighborhood }}
+                                    </p>
+                                    <p>
+                                        <strong>Sleeps:</strong> @{{ listing.beds }}<br>
+                                    </p>
+                                    <p>
+                                        <br>
+                                        <a class="btn btn-coral" :href="'/listings/' + listing.id">Request stay</a>
+                                    </p>
+                                </div>
+                            </template>
+                            <template v-if="listings.length == 0">
+                                <div class="text-center">
+                                    <span v-if="status != 'processing'">Your search returned no results</span>
+                                    <span v-if="status == 'processing'"><i class="fa fa-spinner fa-spin"></i></span>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -101,7 +110,7 @@
                     nights: 1
                 },
                 listings: [],
-                status: 'ready'
+                status: 'clean'
             },
             methods: {
                 cityUpdate: function (suggestion) {
@@ -124,10 +133,11 @@
                 },
                 findPlace: function () {
                     this.status = 'processing'
+                    this.listings = [];
 
                     this.$http.post('/filter', { filter: this.filter }).then(function (response) {
 
-                        app.status = 'ready'
+                        app.status = 'dirty'
                         app.listings = response.data
                         app.gotEm()
 
@@ -136,7 +146,7 @@
                         app.status = 'error'
 
                         setTimeout(function () {
-                            app.status = 'ready'
+                            app.status = 'clean'
                         }, 3000)
                     })
                 },
