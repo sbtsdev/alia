@@ -22,6 +22,7 @@
                                 <td>Pet Friendly</td>
                                 <td>Max Stay (Days)</td>
                                 <td>Beds</td>
+                                <td>Pending Requests</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,6 +40,7 @@
                             <td>{{$listing->pet_friendly ? 'Y' : 'N'}}</td>
                             <td>{{$listing->max_stay_days}}</td>
                             <td>{{$listing->beds}}</td>
+                            <td>{{$listing->getRequestedStays()->count()}}
                         </tr>
                     @endforeach
                         </tbody>

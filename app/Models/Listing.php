@@ -86,4 +86,8 @@ class Listing extends Model
     {
         return ['full_apartment', 'full_house', 'single_room', 'attached_apartment', 'bed'];
     }
+
+    public function getRequestedStays() {
+      return $this->stays()->where('status', 'Requested');
+    }
 }

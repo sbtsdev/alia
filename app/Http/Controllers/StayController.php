@@ -62,7 +62,7 @@ class StayController extends Controller
 
             $msg = "Your stay has been requested.";
 
-            return redirect("/account")->with(['success' => $success, 'msg' => $msg]);
+            return redirect("/account/stays")->with(['success' => $success, 'msg' => $msg]);
         } catch (\Exception $ex) {
             dd($ex);
 
