@@ -61,7 +61,7 @@ $factory->define(App\Models\Church::class, function (Faker\Generator $faker) {
 
 function drand($low, $high)
 {
-return mt_rand($low*1000, $high*1000) / 10000;
+    return 1.5 * mt_rand($low*1000, $high*1000) / 10000;
 }
 
 $factory->define(App\Models\Listing::class, function (Faker\Generator $faker) {
@@ -69,16 +69,19 @@ $factory->define(App\Models\Listing::class, function (Faker\Generator $faker) {
     $user_id = $faker->randomElement($user_ids)->id;
     $types = ['full_apartment', 'full_house', 'single_room', 'attached_apartment', 'bed'];
 
-    $lat = 37.5 + drand(0,10);
-    $long = -84.5 + drand(0,10);
-        //'state' => $faker->state,
+    //louisville 38.2 85.7
+    $lat = 37.5 + drand(0, 10);
+    $long = -84.5 + drand(0, 10);
+
+    //'state' => $faker->state,
+    $house_type = rand(0, 1) ? 'House' : 'Apartment';
     return [
         'user_id' => $user_id,
-        'name' => $faker->company . " House/Apartment",
+        'name' => $faker->company . $house_type,
         'description' => "listing description " . $faker->sentence($nbWords = 6, $variableNbWords = true),
         'type' =>  $types[array_rand($types)],
         'street1' => $faker->streetAddress,
-        'street2' => "Apt. " . $faker->buildingNumber,
+        'street2' => "Apt. " . rand(1, 20),
         'neighborhood' => $faker->city,
         'city' => $faker->city,
         'state' => 'KY',
@@ -87,8 +90,8 @@ $factory->define(App\Models\Listing::class, function (Faker\Generator $faker) {
         'longitude' => $long,
         'kid_friendly' => $faker->boolean(50),
         'pet_friendly' => $faker->boolean(50),
-        'max_stay_days' => rand(1,365),
-        'beds' => rand(1,10)
+        'max_stay_days' => rand(1, 365),
+        'beds' => rand(1, 4)
     ];
 });
 
@@ -105,7 +108,7 @@ $factory->define(App\Models\Stay::class, function (Faker\Generator $faker) {
     $start_date = $dates['start_date'];
     $end_date = $dates['end_date'];
 
-    $statuses = ['requested', 'accepted', 'denied', 'canceled', 'past', 'missed', 'complete'];
+    $statuses = ['requested', 'accepted', 'denied', 'canceled'];
     $status = $statuses[array_rand($statuses)];
     return [
         'stayer_id' => $stayer_id,
