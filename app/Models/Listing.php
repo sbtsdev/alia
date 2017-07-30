@@ -29,7 +29,7 @@ class Listing extends Model
 
     public function images()
     {
-        return $this->hasMany('App\Models\ListingImage');
+        return $this->hasMany('App\Models\ListingImage')->orderBy('order', 'asc');
     }
 
     public function filter($request)
@@ -70,13 +70,20 @@ class Listing extends Model
     public function getListingtypeAttribute()
     {
         $values = [
+            'Apartment' => 'Apartment',
             'full_apartment' => 'Full Apartment',
             'attached_apartment' => 'Attached Apartment',
             'full_house' => 'Full House',
             'single_room' => 'Room(s)',
-            'bed' => 'Bed'
+            'bed' => 'Bed',
+            'house' => 'House'
         ];
 
         return $values[$this->type];
+    }
+
+    public static function getTypes()
+    {
+        return ['full_apartment', 'full_house', 'single_room', 'attached_apartment', 'bed'];
     }
 }

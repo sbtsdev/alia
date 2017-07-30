@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1">
-        <h1>@if(! isset($id)) Create user @else Edit user @endif</h1>
+        <h1>Account</h1>
         @if(session()->has('message'))
           @if(session()->get('success') == "yes")
             <div class="alert alert-success">
