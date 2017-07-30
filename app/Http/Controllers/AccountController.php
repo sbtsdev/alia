@@ -27,8 +27,12 @@ class AccountController extends Controller
 
     public function listings()
     {
+        $data = [
+            'listings' => User::find(Auth::id())->listings
+        ];
         $listings = User::find(Auth::id())->listings;
-        return view('pages.account-listings')->withListings($listings);
+        //return view('pages.account-listings')->withListings($listings);
+        return view('pages.account-listings', $data);
     }
 
     public function stays()
