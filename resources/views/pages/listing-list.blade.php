@@ -1,8 +1,9 @@
 @extends('layout')
 
-@section('content')      
+@section('content')
     @if($listings)
         <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1">
+        <h1>My Listings</h1>
             <table class="col-lg-8 table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -29,8 +30,8 @@
                         {{$listing->street2}}
                         <br>
                         {{$listing->city . ", " . $listing->state . " " . $listing->zip}}</td>
-                    <td>{{$listing->kid_friendly}}</td>
-                    <td>{{$listing->pet_friendly}}</td>
+                    <td>{{$listing->kid_friendly ? 'Y' : 'N'}}</td>
+                    <td>{{$listing->pet_friendly ? 'Y' : 'N'}}</td>
                     <td>{{$listing->max_stay_days}}</td>
                     <td>{{$listing->beds}}</td>
                 </tr>

@@ -21,17 +21,8 @@ Route::resource('listings', 'ListingController');
 
 Auth::routes();
 
-Route::get('/account', 'AccountController@edit');
+Route::get('/account', 'AccountController@edit')->name('account');
+Route::get('/account/listings', 'AccountController@listings')->name('account.listing');
 Route::post('/account', 'AccountController@update');
 
 Route::post('/filter', 'ListingController@filter');
-
-/*
-Route::get('/account', function() {
-  $user = User::find(Auth::id());
-
-  //dd($user);
-
-  return view('pages.user-edit', User::find(Auth::id()));
-})->middleware('auth');
-*/

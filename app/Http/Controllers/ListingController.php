@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use Auth;
 
 class ListingController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => [
+                'create', 'store', 'edit', 'update'
+            ]
+        ]);
+    }
 
     /**
      * Display a listing of the resource.
@@ -26,7 +34,7 @@ class ListingController extends Controller
      */
     public function create()
     {
-        return view('pages.listing-edit');
+        return view('pages.listing-create');
     }
 
     /**
@@ -37,7 +45,41 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $listing = new Listing;
+        $listing->name = $request->name;
+        $listing->description = $request->description;
+        $listing->type = $request->type;
+        $listing->street1 = $request->street1;
+        $listing->street2 = $request->street2;
+        $listing->city = $request->city;
+        $listing->state = $request->state;
+        $listing->zip = $request->zip;
+        $listing->kid_friendly = $request->kid_friendly == "1";
+        $listing->pet_friendly = $request->pet_friendly == "1";
+        $listing->max_stay_days = $request->max_stay_days;
+        $listing->beds = $request->beds;
+        $listing->user_id = Auth::id();
+
+        list($lat, $long) = $this->geocode(
+            $listing->street1.' '.$listing->street2.','.
+            $listing->city.','.$listing->state.' '.$listing->zip
+        );
+        $listing->latitude = $lat;
+        $listing->longitude = $long;
+
+        try {
+            $listing->save();
+            $success = true;
+            $msg = "New listing created.";
+            return redirect()->route('listings.edit', $listing)
+                ->with(['success' => $success, 'message' => $msg]);
+        } catch (\Exception $ex) {
+            $success = false;
+            $msg = "Could not save listing.";
+            return redirect('listings/create')
+                ->withInput()
+                ->with(['success' => $success, 'message' => $msg]);
+        }
     }
 
     /**
@@ -61,7 +103,12 @@ class ListingController extends Controller
     public function edit($id)
     {
         $listing = Listing::find($id);
-        return view('pages.listing-edit', $listing);
+
+        if ($listing->user->id === Auth::id()) {
+            return view('pages.listing-edit', $listing);
+        } else {
+            return redirect()->route('listings.show', $listing->id);
+        }
     }
 
     /**
@@ -105,4 +152,17 @@ class ListingController extends Controller
     {
         return (new Listing)->filter($request);
     }
+
+    private function geoCode($address)
+    {
+        $lat = 37.5 + $this->drand(0, 10);
+        $long = -84.5 + $this->drand(0, 10);
+        return [$lat, $long];
+    }
+
+    private function drand($low, $high)
+    {
+        return mt_rand($low*1000, $high*1000) / 10000;
+    }
+
 }
