@@ -69,7 +69,16 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <template v-if="listing.images.length > 0">
-                                                <img :src="listing.images[0].path" :alt="'Image for ' + listing.name">
+                                                <div class="listing-img">
+                                                    <i class="fa fa-spinner fa-spin"></i>
+                                                    <img :src="listing.images[0].path" :alt="'Image for ' + listing.name">
+                                                </div>
+                                            </template>
+                                            <template v-if="listing.images.length < 1">
+                                                <div class="listing-img">
+                                                    <i class="fa fa-spinner fa-spin"></i>
+                                                    <img src="/assets/img/no-listing-image.png" alt="No listing image">
+                                                </div>
                                             </template>
                                         </div>
                                         <div class="col-md-8">
