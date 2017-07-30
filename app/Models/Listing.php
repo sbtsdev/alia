@@ -70,11 +70,13 @@ class Listing extends Model
     public function getListingtypeAttribute()
     {
         $values = [
+            'Apartment' => 'Apartment',
             'full_apartment' => 'Full Apartment',
             'attached_apartment' => 'Attached Apartment',
             'full_house' => 'Full House',
             'single_room' => 'Room(s)',
-            'bed' => 'Bed'
+            'bed' => 'Bed',
+            'house' => 'House'
         ];
 
         return $values[$this->type];
