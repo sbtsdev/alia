@@ -32,3 +32,5 @@ Route::get('/account/listings', 'AccountController@listings')->name('account.lis
 Route::post('/account', 'AccountController@update');
 
 Route::post('/filter', 'ListingController@filter');
+
+Route::get('/listings/{$listing}/availability/create');
