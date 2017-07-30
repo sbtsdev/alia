@@ -63,15 +63,22 @@ class ListingController extends Controller
         $listing->beds = $request->beds;
         $listing->user_id = Auth::id();
 
-        //list($lat, $long) = $this->geocode(
-        list($lat, $long) = $this->algoliaGeoCode(
-            $listing->street1.' '.$listing->street2.','.
-            $listing->city.','.$listing->state.' '.$listing->zip
-        );
+        try {
+            list($lat, $long) = $this->algoliaGeoCode(
+                $listing->street1.' '.$listing->street2.','.
+                $listing->city.','.$listing->state.' '.$listing->zip
+            );
+        } catch (\Exception $ex) {
+            $success = false;
+            $msg = "Could not save listing. No valid Lattiude and Longitude found for result";
+            return redirect('listings/create')
+                ->withInput()
+                ->with(['success' => $success, 'message' => $msg]);
+        }
+
         $listing->latitude = $lat;
         $listing->longitude = $long;
 
-        //dd($listing);
         try {
             $listing->save();
             $success = true;
@@ -141,10 +148,19 @@ class ListingController extends Controller
         $listing->max_stay_days = $request->max_stay_days;
         $listing->beds = $request->beds;
 
-        list($lat, $long) = $this->geoCode(
-            $listing->street1.' '.$listing->street2.','.
-            $listing->city.','.$listing->state.' '.$listing->zip
-        );
+        try {
+            list($lat, $long) = $this->algoliaGeoCode(
+                $listing->street1.' '.$listing->street2.','.
+                $listing->city.','.$listing->state.' '.$listing->zip
+            );
+        } catch (\Exception $ex) {
+            $success = false;
+            $msg = "Could not save listing. No valid Lattiude and Longitude found for result";
+            return redirect('listings/create')
+                ->withInput()
+                ->with(['success' => $success, 'message' => $msg]);
+        }
+
         $listing->latitude = $lat;
         $listing->longitude = $long;
 
@@ -161,7 +177,7 @@ class ListingController extends Controller
                 ->withInput()
                 ->with(['success' => $success, 'message' => $msg]);
         }
-    }
+   }
 
     /**
      * Remove the specified resource from storage.
@@ -199,21 +215,20 @@ class ListingController extends Controller
         }
         curl_close ($ch);
 
-
-        //dd(json_decode($result));
         return json_decode($result);
     }
 
     private function algoliaGeoCode($address)
     {
         $results = $this->algoliaCurl($address);
+        if(!$results) {
+            throw new \Exception("Error getting Lattitude and Longitude");
+        }
         $result = $results->hits;
 
         $geo = ($result[0])->_geoloc;
 
         return [$geo->lat, $geo->lng];
-       // return ['lat' => $geo->lat, 'lng' => $geo->lng];
-
     }
 
     private function geoCode($address)
